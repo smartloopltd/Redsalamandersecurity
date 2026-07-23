@@ -9,10 +9,10 @@ export default function Home() {
         <div className="mx-auto max-w-4xl space-y-6 bg-transparent p-0 text-slate-950">
           <p className="text-sm uppercase tracking-[0.35em] text-red-600">What we do</p>
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            Red Salamader Security delivers a focused defense posture with proactive threat monitoring, rapid incident response, and enterprise grade resilience.
+            Red Salamader Security delivers practical, mission-ready protection with proactive monitoring, fast incident response, and resilient operations.
           </h2>
           <p className="max-w-3xl text-lg leading-8 text-slate-600">
-            We protect your critical systems and data with continuous threat detection, hands on incident action, and strategic security operations tailored for enterprise risk. Our team helps reduce exposure across cloud, network, and application environments, provides real-time escalation when suspicious activity appears, and embeds security controls that make your business harder to breach.
+            We safeguard people and assets with continuous oversight, decisive action, and security services designed for complex organizations. Our team reduces exposure across digital and physical environments, responds quickly when risks emerge, and builds stronger controls that keep your operations running reliably.
           </p>
         </div>
       </section>
@@ -21,14 +21,14 @@ export default function Home() {
         <div className="mx-auto max-w-4xl space-y-6 bg-transparent p-0 text-slate-950">
           <p className="text-sm uppercase tracking-[0.35em] text-red-600">Who we serve</p>
           <h3 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            Organizations that need end to end protection for digital and physical operations.
+            Organizations that rely on dependable protection for people, property, and operations.
           </h3>
           <ul className="max-w-3xl space-y-4 text-lg leading-8 text-slate-600 list-none p-0">
-            <li>Security leaders and SOC teams seeking consistent threat visibility, rapid detection, and threat hunting support.</li>
-            <li>Technology organizations and estates protecting critical infrastructure, cloud estates, and sensitive data stores.</li>
-            <li>Compliance minded businesses that need reliable audit ready controls, vendor oversight, and policy enforcement.</li>
-            <li>Facilities and executive protection teams requiring physical security planning, access control, and on site incident response.</li>
-            <li>Enterprises that want unified defense across cyber, facility, and operational security environments.</li>
+            <li>Leadership teams and security operations groups seeking steady oversight, faster response, and clear operational control.</li>
+            <li>Businesses protecting critical facilities, digital systems, and sensitive infrastructure across corporate campuses and remote sites.</li>
+            <li>Regulated organizations needing practical compliance support, vendor management, and consistent policy execution.</li>
+            <li>Facilities and executive protection teams requiring secure access, crowd management, and on-site incident coordination.</li>
+            <li>Enterprises that want aligned protection across physical, operational, and information environments.</li>
           </ul>
         </div>
       </section>
@@ -38,7 +38,7 @@ export default function Home() {
           <div className="space-y-4">
             <p className="text-sm uppercase tracking-[0.35em] text-red-600">Our track record</p>
             <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-              High performing people across the continent
+              High performing people across the Nation
             </h2>
             <p className="max-w-3xl text-lg leading-8 text-slate-600">
               Discover why we are the best at what we do
