@@ -15,17 +15,17 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="relative overflow-visible bg-red-600 text-white shadow-lg shadow-red-600/20">
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <Link href="/" className="text-2xl font-bold tracking-tight">
+    <header className="sticky top-0 w-full z-50 bg-red-600 text-white shadow-lg shadow-red-600/20">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-5">
+        <div className="min-w-0 flex-1">
+          <Link href="/" className="block truncate text-2xl font-bold tracking-tight">
             Red Salamader Security
           </Link>
         </div>
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition border-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 shadow-none"
+          className="flex-shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition border-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 shadow-none"
           aria-label="Toggle navigation"
           aria-expanded={open}
           onClick={() => setOpen((prev) => !prev)}

@@ -28,19 +28,19 @@ export default function HeroSlider() {
 
   return (
     <section className="relative w-full overflow-hidden bg-red-600 text-white">
-      <div className="relative h-[380px] sm:h-[460px] lg:h-[520px]">
+      <div className="relative w-full h-[50vh] md:h-[70vh] lg:h-[85vh] min-h-[450px] overflow-hidden">
         {slides.map((slide, index) => (
           <div
             key={slide.alt}
-            className={`absolute inset-0 transition-all duration-700 ${
-              index === activeIndex ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === activeIndex ? "opacity-100" : "opacity-0"
             }`}
           >
             <Image
               src={slide.src}
               alt={slide.alt}
               fill
-              className="object-cover"
+              className="w-full h-full object-cover object-top md:object-center"
               priority={index === 0}
             />
           </div>
