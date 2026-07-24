@@ -22,7 +22,7 @@ export default function Header() {
             href="/"
             className="block max-w-[10rem] text-[0.78rem] font-bold leading-[1.15] tracking-tight whitespace-normal break-words sm:max-w-[13rem] sm:text-sm md:max-w-none md:text-xl"
           >
-            Red Salamander Operations
+            Red Salamander Security
           </Link>
         </div>
 
