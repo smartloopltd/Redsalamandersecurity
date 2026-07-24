@@ -36,19 +36,41 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
 
           <footer className="bg-red-600 text-white">
-            <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-[1.3fr_0.8fr_1.1fr] md:items-start">
               <div className="space-y-3">
                 <Link href="/" className="text-2xl font-bold tracking-tight text-white">
-                  Red Salamader Security
+                  Red Salamander Operations
                 </Link>
-                <p className="text-sm text-red-100">© 2026 Red Salamader Security. Trusted protection for modern enterprises.</p>
+                <p className="max-w-md text-sm leading-6 text-red-100">
+                  Professional security, logistics, and consultancy support for organizations that require dependable protection and practical operational continuity.
+                </p>
+                <p className="text-sm text-red-100">© 2026 Red Salamander Operations. Trusted protection for modern enterprises.</p>
               </div>
-              <div className="flex flex-wrap items-center gap-4 text-sm sm:gap-6">
-                <Link href="/" className="transition hover:text-red-200">Home</Link>
-                <Link href="/about" className="transition hover:text-red-200">About</Link>
-                <Link href="/services" className="transition hover:text-red-200">Services</Link>
-                <Link href="/features" className="transition hover:text-red-200">Features</Link>
-                <Link href="/contact" className="transition hover:text-red-200">Contact</Link>
+
+              <div className="space-y-3">
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-red-100">
+                  Quick links
+                </p>
+                <div className="flex flex-wrap gap-3 text-sm">
+                  <Link href="/" className="rounded-full border border-white/30 px-3 py-1.5 transition hover:bg-white/10">Home</Link>
+                  <Link href="/about" className="rounded-full border border-white/30 px-3 py-1.5 transition hover:bg-white/10">About</Link>
+                  <Link href="/services" className="rounded-full border border-white/30 px-3 py-1.5 transition hover:bg-white/10">Services</Link>
+                  <Link href="/features" className="rounded-full border border-white/30 px-3 py-1.5 transition hover:bg-white/10">Features</Link>
+                  <Link href="/contact" className="rounded-full border border-white/30 px-3 py-1.5 transition hover:bg-white/10">Contact</Link>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-red-100">
+                  Contact
+                </p>
+                <p className="text-sm leading-6 text-red-50">
+                  17 Luka Panya Street, Opposite Esu-Karu Residence, Karu LGC, Nasarawa State, Nigeria
+                </p>
+                <p className="text-sm leading-6 text-red-50">
+                  +234 802 127 5677<br />
+                  +234 817 289 0063
+                </p>
               </div>
             </div>
           </footer>

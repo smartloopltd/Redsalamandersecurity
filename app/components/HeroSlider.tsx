@@ -28,7 +28,7 @@ export default function HeroSlider() {
 
   return (
     <section className="relative w-full overflow-hidden bg-red-600 text-white">
-      <div className="relative w-full h-[50vh] md:h-[70vh] lg:h-[85vh] min-h-[450px] overflow-hidden">
+      <div className="relative isolate aspect-[4/3] min-h-[420px] w-full overflow-hidden sm:aspect-[16/9] lg:aspect-[16/9] lg:min-h-[580px]">
         {slides.map((slide, index) => (
           <div
             key={slide.alt}
@@ -40,15 +40,17 @@ export default function HeroSlider() {
               src={slide.src}
               alt={slide.alt}
               fill
-              className="w-full h-full object-cover object-top md:object-center"
+              sizes="100vw"
               priority={index === 0}
+              className="h-full w-full object-cover object-center"
             />
           </div>
         ))}
 
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
         <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 py-14 text-center sm:px-8 sm:text-left" />
 
-        <div className="absolute inset-x-0 bottom-6 z-20 flex justify-center gap-2">
+        <div className="absolute inset-x-0 bottom-5 z-20 flex justify-center gap-2 sm:bottom-6">
           {slides.map((_, index) => (
             <button
               key={index}

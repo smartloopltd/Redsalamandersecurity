@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Features", href: "/features" },
   { label: "Contact", href: "/contact" },
@@ -16,10 +16,13 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 w-full z-50 bg-red-600 text-white shadow-lg shadow-red-600/20">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-5">
-        <div className="min-w-0 flex-1">
-          <Link href="/" className="block text-base sm:text-lg md:text-xl font-bold tracking-tight leading-tight">
-            Red Salamader Security
+      <div className="mx-auto flex w-full max-w-7xl items-start justify-between gap-4 px-6 py-5 sm:items-center">
+        <div className="min-w-0 flex-1 pr-2">
+          <Link
+            href="/"
+            className="block max-w-[10rem] text-[0.78rem] font-bold leading-[1.15] tracking-tight whitespace-normal break-words sm:max-w-[13rem] sm:text-sm md:max-w-none md:text-xl"
+          >
+            Red Salamander Operations
           </Link>
         </div>
 
