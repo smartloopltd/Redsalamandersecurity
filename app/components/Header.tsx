@@ -1,18 +1,70 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Services", href: "/services" },
+  {
+    label: "What we do",
+    href: "#",
+    children: [
+      { label: "Executive Travel Security", href: "/services/executive-travel" },
+      { label: "Escorts", href: "/services/escorts" },
+      { label: "Staff Vetting", href: "/services/staff-vetting" },
+      { label: "Operations / Logistics", href: "/services/operations" },
+      { label: "Agribusiness & Hospitality", href: "/services/agribusiness" },
+    ],
+  },
+  {
+    label: "Who we serve",
+    href: "#",
+    children: [
+      { label: "Commercial properties", href: "#" },
+      { label: "Construction site", href: "#" },
+      { label: "Data center", href: "#" },
+      { label: "Financial industry", href: "#" },
+      { label: "Government services", href: "#" },
+      { label: "Healthcare", href: "#" },
+      { label: "Higher education", href: "#" },
+      { label: "Industrial security", href: "#" },
+      { label: "Logistics and transportation", href: "#" },
+      { label: "Malls, shopping centers and retail", href: "#" },
+      { label: "Manufacturing", href: "#" },
+      { label: "Oil, gas and energy sectors", href: "#" },
+      { label: "Ports and logistics security", href: "#" },
+      { label: "Residential", href: "#" },
+    ],
+  },
   { label: "Features", href: "/features" },
   { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [whoWeServeOpen, setWhoWeServeOpen] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const whoWeServeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+        setServicesOpen(false);
+      }
+      if (whoWeServeRef.current && !whoWeServeRef.current.contains(event.target as Node)) {
+        setWhoWeServeOpen(false);
+      }
+    }
+
+    if (servicesOpen || whoWeServeOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }
+  }, [servicesOpen, whoWeServeOpen]);
 
   return (
     <header className="sticky top-0 w-full z-50 bg-red-600 text-white shadow-lg shadow-red-600/20">
@@ -25,6 +77,8 @@ export default function Header() {
             Red Salamander Security
           </Link>
         </div>
+
+
 
         <button
           type="button"
@@ -55,17 +109,59 @@ export default function Header() {
         >
           ×
         </button>
-        <div className="space-y-3">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="block rounded-2xl border border-transparent bg-transparent px-4 py-4 text-sm font-semibold text-white transition-colors duration-150 focus:outline-none focus-visible:outline-none focus:ring-0 hover:border-white/20 focus:border-white/20"
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <div className="space-y-3 overflow-y-auto max-h-[calc(100vh-120px)] scrollbar-hide">
+          {navLinks.map((link) => {
+            const isServicesDropdown = link.label === "What we do";
+            const isWhoWeServeDropdown = link.label === "Who we serve";
+            const isOpen = isServicesDropdown ? servicesOpen : isWhoWeServeDropdown ? whoWeServeOpen : false;
+            const setIsOpen = isServicesDropdown ? setServicesOpen : isWhoWeServeDropdown ? setWhoWeServeOpen : () => {};
+            const ref = isServicesDropdown ? servicesRef : isWhoWeServeDropdown ? whoWeServeRef : null;
+
+            return (
+              <div key={link.href} ref={ref}>
+                {link.children ? (
+                  <>
+                    <button
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-2xl border border-transparent bg-transparent px-4 py-4 text-left text-sm font-semibold text-white transition-colors duration-150 hover:border-white/20 focus:outline-none focus-visible:outline-none focus:ring-0"
+                      onClick={() => setIsOpen((prev: boolean) => !prev)}
+                    >
+                      {link.label}
+                      <span className={`inline-block transition-transform duration-150 ${isOpen ? "rotate-180" : "rotate-0"}`}>
+                        ▼
+                      </span>
+                    </button>
+
+                    {isOpen ? (
+                      <div className="mt-2 space-y-1 pl-4 max-h-[300px] overflow-y-auto scrollbar-hide">
+                        {link.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className="block rounded px-3 py-2 text-sm font-medium text-white/95 hover:bg-white/10"
+                            onClick={() => {
+                              setOpen(false);
+                              setIsOpen(false);
+                            }}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                  </>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="block rounded-2xl border border-transparent bg-transparent px-4 py-4 text-sm font-semibold text-white transition-colors duration-150 focus:outline-none focus-visible:outline-none focus:ring-0 hover:border-white/20 focus:border-white/20"
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 

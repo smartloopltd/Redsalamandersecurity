@@ -54,7 +54,7 @@ export default function RootLayout({
                 <div className="flex flex-wrap gap-3 text-sm">
                   <Link href="/" className="rounded-full border border-white/30 px-3 py-1.5 transition hover:bg-white/10">Home</Link>
                   <Link href="/about" className="rounded-full border border-white/30 px-3 py-1.5 transition hover:bg-white/10">About</Link>
-                  <Link href="/services" className="rounded-full border border-white/30 px-3 py-1.5 transition hover:bg-white/10">Services</Link>
+                  <span className="rounded-full border border-white/30 px-3 py-1.5 text-white/80">Services</span>
                   <Link href="/features" className="rounded-full border border-white/30 px-3 py-1.5 transition hover:bg-white/10">Features</Link>
                   <Link href="/contact" className="rounded-full border border-white/30 px-3 py-1.5 transition hover:bg-white/10">Contact</Link>
                 </div>
