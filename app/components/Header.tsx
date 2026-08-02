@@ -9,11 +9,13 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [whoWeServeOpen, setWhoWeServeOpen] = useState(false);
   const [joinUsOpen, setJoinUsOpen] = useState(false);
+  const [findUsOpen, setFindUsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const servicesRef = useRef<HTMLDivElement>(null);
   const whoWeServeRef = useRef<HTMLDivElement>(null);
   const joinUsRef = useRef<HTMLDivElement>(null);
+  const findUsRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -27,15 +29,18 @@ export default function Header() {
       if (joinUsRef.current && !joinUsRef.current.contains(event.target as Node)) {
         setJoinUsOpen(false);
       }
+      if (findUsRef.current && !findUsRef.current.contains(event.target as Node)) {
+        setFindUsOpen(false);
+      }
     }
 
-    if (servicesOpen || whoWeServeOpen || joinUsOpen) {
+    if (servicesOpen || whoWeServeOpen || joinUsOpen || findUsOpen) {
       document.addEventListener("mousedown", handleClickOutside);
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }
-  }, [servicesOpen, whoWeServeOpen, joinUsOpen]);
+  }, [servicesOpen, whoWeServeOpen, joinUsOpen, findUsOpen]);
 
   useEffect(() => {
     if (searchOpen) {
@@ -214,9 +219,10 @@ export default function Header() {
             const isServicesDropdown = link.label === "What we do";
             const isWhoWeServeDropdown = link.label === "Who we serve";
             const isJoinUsDropdown = link.label === "Join Us";
-            const isOpen = isServicesDropdown ? servicesOpen : isWhoWeServeDropdown ? whoWeServeOpen : isJoinUsDropdown ? joinUsOpen : false;
-            const setIsOpen = isServicesDropdown ? setServicesOpen : isWhoWeServeDropdown ? setWhoWeServeOpen : isJoinUsDropdown ? setJoinUsOpen : () => {};
-            const ref = isServicesDropdown ? servicesRef : isWhoWeServeDropdown ? whoWeServeRef : isJoinUsDropdown ? joinUsRef : null;
+            const isFindUsDropdown = link.label === "Find us";
+            const isOpen = isServicesDropdown ? servicesOpen : isWhoWeServeDropdown ? whoWeServeOpen : isJoinUsDropdown ? joinUsOpen : isFindUsDropdown ? findUsOpen : false;
+            const setIsOpen = isServicesDropdown ? setServicesOpen : isWhoWeServeDropdown ? setWhoWeServeOpen : isJoinUsDropdown ? setJoinUsOpen : isFindUsDropdown ? setFindUsOpen : () => {};
+            const ref = isServicesDropdown ? servicesRef : isWhoWeServeDropdown ? whoWeServeRef : isJoinUsDropdown ? joinUsRef : isFindUsDropdown ? findUsRef : null;
 
             return (
               <div key={`${link.label}-${link.href}`} ref={ref} className="border-b-2 border-white/60 py-2 last:border-b-0">

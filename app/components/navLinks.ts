@@ -39,5 +39,9 @@ export const navLinks = [
     href: "#",
     children: [{ label: "Working at Red Salamander Security", href: "/features" }],
   },
-  { label: "Find us", href: "/contact" },
+  {
+    label: "Find us",
+    href: "#",
+    children: [{ label: "Karu LGC, Nasarawa State", href: "/contact" }],
+  },
 ];
