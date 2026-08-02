@@ -131,14 +131,14 @@ export default function Header() {
       ) : null}
 
       <div
-        className={`fixed right-0 z-[60] w-full transform bg-red-700 p-6 transition-transform duration-300 ease-in-out shadow-2xl shadow-black/25 ${
+        className={`fixed right-0 z-[60] w-full transform bg-red-700 p-6 pb-10 transition-transform duration-300 ease-in-out shadow-2xl shadow-black/25 ${
           searchOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{ top: headerHeight, bottom: 0, left: 0 }}
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="mx-auto w-full max-w-7xl text-white">
-          <div className="w-full">
+        <div className="mx-auto flex h-full w-full max-w-7xl flex-col text-white">
+          <div className="flex-1 min-h-0">
             <div className="relative">
               <div className="flex items-center gap-2 border border-white bg-white px-3 py-2 rounded-md">
                 <svg
@@ -201,83 +201,104 @@ export default function Header() {
                 </div>
               ) : null}
             </div>
+          </div>
 
-            <div className={`mt-6 space-y-4 text-white ${isSearching ? "opacity-0 pointer-events-none" : ""}`}>
-              <p className="text-sm text-white/90">
-                Professional security, logistics, and consultancy support for organizations that require dependable protection and practical operational continuity.
-              </p>
-
-              <p className="text-sm text-white/80">© 2026 Red Salamander Security. Trusted protection for modern enterprises.</p>
-            </div>
+          <div className={`mt-6 space-y-2 border-t border-white/30 pt-4 pb-4 text-white sm:mt-7 sm:pt-4 sm:pb-5 lg:mt-16 lg:pt-5 lg:pb-8 ${isSearching ? "opacity-0 pointer-events-none" : ""}`}>
+            <p className="text-sm leading-5 text-white/90 sm:text-[0.95rem] lg:text-sm">
+              We provide trusted security, logistics, and consultancy support for organizations that value dependable protection and calm operational continuity.
+            </p>
+            <p className="text-sm leading-5 text-white/90 sm:text-[0.95rem] lg:text-sm">
+              Digital Solutions by
+              <span className="mt-1 block leading-tight uppercase text-white">
+                <span className="block text-[0.7rem] font-extrabold tracking-[0.24em] sm:text-[0.78rem] md:text-[0.95rem] lg:text-[0.95rem]">Smartloop</span>
+                <span className="mt-1 block text-[0.62rem] font-light tracking-[0.24em] sm:text-[0.68rem] md:text-[0.8rem] lg:text-[0.85rem]">Limited</span>
+              </span>
+            </p>
+            <p className="text-sm leading-5 text-white/80 sm:text-[0.95rem] lg:text-sm">© 2026 Red Salamander Security. Trusted protection for modern enterprises.</p>
           </div>
         </div>
       </div>
 
       <div
-        className={`fixed right-0 z-[40] w-full transform bg-red-700 p-6 transition-transform duration-300 ease-in-out shadow-2xl shadow-black/25 ${
+        className={`fixed right-0 z-[40] w-full transform bg-red-700 p-6 pb-10 transition-transform duration-300 ease-in-out shadow-2xl shadow-black/25 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
         style={{ top: headerHeight, bottom: 0, left: 0 }}
       >
         {/* close button removed from inside the drawer — header toggle transforms into cancel */}
-        <div className="space-y-3 overflow-y-auto max-h-[calc(100vh-120px)] scrollbar-hide">
-          {navLinks.map((link) => {
-            const isOpen = !!openGroups[link.label];
-            const toggleGroup = () => {
-              setOpenGroups((prev) => ({
-                ...prev,
-                [link.label]: !prev[link.label],
-              }));
-            };
+        <div className="flex h-full flex-col">
+          <div className="flex-1 space-y-3 overflow-y-auto scrollbar-hide">
+            {navLinks.map((link) => {
+              const isOpen = !!openGroups[link.label];
+              const toggleGroup = () => {
+                setOpenGroups((prev) => ({
+                  ...prev,
+                  [link.label]: !prev[link.label],
+                }));
+              };
 
-            return (
-              <div key={`${link.label}-${link.href}`} className="border-b-2 border-white/60 py-2 last:border-b-0">
-                {link.children ? (
-                  <>
-                    <button
-                      type="button"
-                      className="flex w-full items-center justify-between rounded-2xl border border-transparent bg-transparent px-4 py-4 text-left text-sm font-semibold text-white transition-colors duration-150 hover:bg-white/10 focus:outline-none focus-visible:outline-none focus:ring-0"
-                      onClick={toggleGroup}
+              return (
+                <div key={`${link.label}-${link.href}`} className="border-b-2 border-white/60 py-2 last:border-b-0">
+                  {link.children ? (
+                    <>
+                      <button
+                        type="button"
+                        className="flex w-full items-center justify-between rounded-2xl border border-transparent bg-transparent px-4 py-4 text-left text-sm font-semibold text-white transition-colors duration-150 hover:bg-white/10 focus:outline-none focus-visible:outline-none focus:ring-0"
+                        onClick={toggleGroup}
+                      >
+                        {link.label}
+                        <span className={`inline-block transition-transform duration-150 ${isOpen ? "rotate-180" : "rotate-0"}`}>
+                          ▼
+                        </span>
+                      </button>
+
+                      {isOpen ? (
+                        <div className="mt-2 space-y-1 pl-4 max-h-[300px] overflow-y-auto scrollbar-hide">
+                          {link.children.map((child) => (
+                            <Link
+                              key={`${child.label}-${child.href}`}
+                              href={child.href}
+                              className="block rounded px-3 py-2 text-sm font-medium text-white/95 hover:bg-white/10"
+                              onClick={() => {
+                                setOpen(false);
+                                setOpenGroups({});
+                              }}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      ) : null}
+                    </>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="block rounded-2xl border border-transparent bg-transparent px-4 py-4 text-sm font-semibold text-white transition-colors duration-150 focus:outline-none focus-visible:outline-none focus:ring-0 hover:bg-white/10"
+                      onClick={() => {
+                        setOpen(false);
+                        setOpenGroups({});
+                      }}
                     >
                       {link.label}
-                      <span className={`inline-block transition-transform duration-150 ${isOpen ? "rotate-180" : "rotate-0"}`}>
-                        ▼
-                      </span>
-                    </button>
-
-                    {isOpen ? (
-                      <div className="mt-2 space-y-1 pl-4 max-h-[300px] overflow-y-auto scrollbar-hide">
-                        {link.children.map((child) => (
-                          <Link
-                            key={`${child.label}-${child.href}`}
-                            href={child.href}
-                            className="block rounded px-3 py-2 text-sm font-medium text-white/95 hover:bg-white/10"
-                            onClick={() => {
-                              setOpen(false);
-                              setOpenGroups({});
-                            }}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    ) : null}
-                  </>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className="block rounded-2xl border border-transparent bg-transparent px-4 py-4 text-sm font-semibold text-white transition-colors duration-150 focus:outline-none focus-visible:outline-none focus:ring-0 hover:bg-white/10"
-                    onClick={() => {
-                      setOpen(false);
-                      setOpenGroups({});
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                )}
-              </div>
-            );
-          })}
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          <div className="mt-auto border-t border-white/40 pt-4 space-y-2 text-sm text-white/90 sm:pt-5 lg:mt-8 lg:pt-5 lg:pb-5">
+            <p className="leading-5 text-white/90">
+              We provide trusted security, logistics, and consultancy support for organizations that value dependable protection and calm operational continuity.
+            </p>
+            <p className="text-sm leading-5 text-white/90">
+              Digital Solutions by
+              <span className="mt-1 block leading-tight uppercase text-white">
+                <span className="block text-[0.7rem] font-extrabold tracking-[0.24em] sm:text-[0.78rem] md:text-[0.95rem]">Smartloop</span>
+                <span className="mt-1 block text-[0.62rem] font-light tracking-[0.24em] sm:text-[0.68rem] md:text-[0.8rem]">Limited</span>
+              </span>
+            </p>
+            <p className="text-sm leading-5 text-white/80">© 2026 Red Salamander Security. Trusted protection for modern enterprises.</p>
+          </div>
         </div>
       </div>
 

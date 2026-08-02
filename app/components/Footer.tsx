@@ -23,10 +23,17 @@ export default function Footer() {
               SECURITY
             </span>
           </Link>
-          <p className="max-w-md text-sm leading-6 text-red-100">
-            Professional security, logistics, and consultancy support for organizations that require dependable protection and practical operational continuity.
+          <p className="max-w-md text-sm leading-5 text-red-100">
+            We provide trusted security, logistics, and consultancy support for organizations that value dependable protection and calm operational continuity.
           </p>
-          <p className="text-sm text-red-100">© 2026 Red Salamander Security. Trusted protection for modern enterprises.</p>
+          <p className="text-sm leading-5 text-red-100">
+            Digital Solutions by
+            <span className="mt-1 block leading-tight uppercase text-white">
+              <span className="block text-[0.7rem] font-extrabold tracking-[0.24em] sm:text-[0.78rem] md:text-[0.95rem]">Smartloop</span>
+              <span className="mt-1 block text-[0.62rem] font-light tracking-[0.24em] sm:text-[0.68rem] md:text-[0.8rem]">Limited</span>
+            </span>
+          </p>
+          <p className="text-sm leading-5 text-red-100">© 2026 Red Salamander Security. Trusted protection for modern enterprises.</p>
         </div>
 
         <div className="space-y-3 border-b-[3px] border-white/70 pb-6 md:border-b-0 md:border-r-[3px] md:border-white/70 md:pr-8">
