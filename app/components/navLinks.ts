@@ -1,5 +1,13 @@
 export const navLinks = [
-  { label: "Who we are", href: "/about" },
+  {
+    label: "Who we are",
+    href: "#",
+    children: [
+      { label: "Our team", href: "/who-we-are" },
+      { label: "Our partners", href: "/who-we-are/partners" },
+      { label: "Our project", href: "/who-we-are/project" },
+    ],
+  },
   {
     label: "What we do",
     href: "#",

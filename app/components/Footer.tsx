@@ -83,12 +83,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-3 border-b-[3px] border-white/70 pb-6 md:border-b-0">
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-red-100">
             Find us
           </p>
           <p className="text-sm leading-6 text-red-50">
             17 Luka Panya Street, Opposite Esu-Karu Residence, Karu LGC, Nasarawa State, Nigeria
+          </p>
+          <p className="text-sm leading-6 text-red-50">
+            Los Angeles Event Center & Mall: Located on Ahmadu Bello Way, Kado/Mabushi axis, Abuja, FCT
           </p>
           <p className="text-sm leading-6 text-red-50">
             +234 802 127 5677<br />
