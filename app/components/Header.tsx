@@ -219,7 +219,7 @@ export default function Header() {
             const ref = isServicesDropdown ? servicesRef : isWhoWeServeDropdown ? whoWeServeRef : isJoinUsDropdown ? joinUsRef : null;
 
             return (
-              <div key={link.href} ref={ref} className="border-b-2 border-white/60 py-2 last:border-b-0">
+              <div key={`${link.label}-${link.href}`} ref={ref} className="border-b-2 border-white/60 py-2 last:border-b-0">
                 {link.children ? (
                   <>
                     <button
@@ -237,7 +237,7 @@ export default function Header() {
                       <div className="mt-2 space-y-1 pl-4 max-h-[300px] overflow-y-auto scrollbar-hide">
                         {link.children.map((child) => (
                           <Link
-                            key={child.href}
+                            key={`${child.label}-${child.href}`}
                             href={child.href}
                             className="block rounded px-3 py-2 text-sm font-medium text-white/95 hover:bg-white/10"
                             onClick={() => {

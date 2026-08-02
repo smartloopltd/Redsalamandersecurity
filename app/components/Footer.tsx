@@ -89,7 +89,7 @@ export default function Footer() {
 
         <div className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-red-100">
-            Contact
+            Find us
           </p>
           <p className="text-sm leading-6 text-red-50">
             17 Luka Panya Street, Opposite Esu-Karu Residence, Karu LGC, Nasarawa State, Nigeria

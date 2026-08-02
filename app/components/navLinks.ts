@@ -1,5 +1,4 @@
 export const navLinks = [
-  { label: "Home", href: "/" },
   { label: "Who we are", href: "/about" },
   {
     label: "What we do",
@@ -8,6 +7,7 @@ export const navLinks = [
       { label: "Executive Travel Security", href: "/services/executive-travel" },
       { label: "Escorts", href: "/services/escorts" },
       { label: "Staff Vetting", href: "/services/staff-vetting" },
+      { label: "Construction", href: "/services/construction" },
       { label: "Operations / Logistics", href: "/services/operations" },
       { label: "Agribusiness & Hospitality", href: "/services/agribusiness" },
     ],
@@ -39,5 +39,5 @@ export const navLinks = [
     href: "#",
     children: [{ label: "Working at Red Salamander Security", href: "/features" }],
   },
-  { label: "Contact", href: "/contact" },
+  { label: "Find us", href: "/contact" },
 ];
