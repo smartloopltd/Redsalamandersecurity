@@ -1,8 +1,26 @@
-export default function Agribusiness() {
+import Link from "next/link";
+
+export default function AgribusinessPage() {
   return (
-    <div className="mx-auto w-full max-w-6xl px-6 py-20">
-      <h1 className="text-4xl font-semibold">Agribusiness & Hospitality</h1>
-      <p className="mt-4 text-lg text-slate-600">Agribusiness, groceries, hospitality support and event services tailored for operational needs.</p>
-    </div>
+    <main className="min-h-screen bg-slate-50 text-slate-900">
+      <section className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-20 sm:px-8 lg:px-12">
+        <div className="space-y-4">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-red-600">What we do</p>
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">Agribusiness & Hospitality</h1>
+          <p className="max-w-3xl text-lg leading-8 text-slate-700">
+            We support agribusiness, hospitality, and event-focused environments with protective services that remain practical, responsive, and discreet.
+          </p>
+        </div>
+
+        <div className="space-y-4 text-slate-700">
+          <p>Our approach helps organizations maintain secure, confident operations in environments where guest experience and continuity both matter.</p>
+        </div>
+
+        <div className="flex flex-wrap gap-4 text-sm font-semibold text-red-600">
+          <Link href="/contact" className="hover:text-red-700">Contact our team</Link>
+          <Link href="/about" className="hover:text-red-700">Learn about Red Salamander</Link>
+        </div>
+      </section>
+    </main>
   );
 }

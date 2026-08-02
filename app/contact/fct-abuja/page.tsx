@@ -1,7 +1,7 @@
 import Image from "next/image";
-import contactHeroImage from "../img/img2/contactpage_herosection.jpg";
+import contactHeroImage from "../../img/img2/contactpage_herosection.jpg";
 
-export default function Contact() {
+export default function FctAbuja() {
   return (
     <div className="flex flex-col bg-white text-slate-950">
       <section className="relative h-[500px] w-full overflow-hidden sm:h-[560px] md:h-[600px] lg:h-[70vh] lg:min-h-[540px]">
@@ -19,10 +19,10 @@ export default function Contact() {
           <div className="mx-auto w-full max-w-6xl px-6 py-10 text-white sm:px-8 lg:px-10">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.24em] text-red-200">
-                Get in touch
+                Find us — FCT, Abuja
               </p>
               <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-                Let’s discuss your protection and operational needs.
+                Visit our FCT, Abuja office
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-7 text-slate-100 sm:text-lg lg:text-xl">
                 Reach out to Red Salamander Operations, Nigeria Ltd for dependable security support, logistics coordination, and professional consultancy.
@@ -48,7 +48,7 @@ export default function Contact() {
             <div>
               <h3 className="text-xl font-semibold text-slate-950">Office Address</h3>
               <p className="mt-2 text-base leading-7 text-slate-600 sm:text-lg">
-                17 Luka Panya Street, Opposite Esu-Karu Residence, Karu LGC, Nasarawa State, Nigeria
+                Los Angeles Event Center &amp; Mall: Located on Ahmadu Bello Way, Kado/Mabushi axis, Abuja, FCT,
               </p>
             </div>
             <div>

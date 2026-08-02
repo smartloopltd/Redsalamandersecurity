@@ -63,17 +63,6 @@ export default function Footer() {
                             {child.label}
                           </Link>
                         ))}
-
-                        {link.label === "Who we serve" ? (
-                          <Link
-                            key="who-we-serve-private-citizens"
-                            href="#"
-                            className="block text-white/80 hover:text-white text-sm"
-                            onClick={() => setOpenGroups({})}
-                          >
-                            Private citizens
-                          </Link>
-                        ) : null}
                       </div>
                     ) : null}
                   </div>

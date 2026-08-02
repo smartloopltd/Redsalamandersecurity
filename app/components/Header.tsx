@@ -1,52 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { navLinks } from "./navLinks";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [whoWeServeOpen, setWhoWeServeOpen] = useState(false);
-  const [joinUsOpen, setJoinUsOpen] = useState(false);
-  const [findUsOpen, setFindUsOpen] = useState(false);
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const servicesRef = useRef<HTMLDivElement>(null);
-  const whoWeServeRef = useRef<HTMLDivElement>(null);
-  const joinUsRef = useRef<HTMLDivElement>(null);
-  const findUsRef = useRef<HTMLDivElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
-        setServicesOpen(false);
-      }
-      if (whoWeServeRef.current && !whoWeServeRef.current.contains(event.target as Node)) {
-        setWhoWeServeOpen(false);
-      }
-      if (joinUsRef.current && !joinUsRef.current.contains(event.target as Node)) {
-        setJoinUsOpen(false);
-      }
-      if (findUsRef.current && !findUsRef.current.contains(event.target as Node)) {
-        setFindUsOpen(false);
-      }
-    }
-
-    if (servicesOpen || whoWeServeOpen || joinUsOpen || findUsOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }
-  }, [servicesOpen, whoWeServeOpen, joinUsOpen, findUsOpen]);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (searchOpen) {
       searchInputRef.current?.focus();
     }
   }, [searchOpen]);
+
+  useLayoutEffect(() => {
+    const updateHeaderHeight = () => {
+      setHeaderHeight(headerRef.current?.offsetHeight ?? 0);
+    };
+
+    updateHeaderHeight();
+    window.addEventListener("resize", updateHeaderHeight);
+    return () => window.removeEventListener("resize", updateHeaderHeight);
+  }, []);
 
   const searchableLinks = navLinks.flatMap((link) =>
     link.children
@@ -62,8 +43,10 @@ export default function Header() {
     ? searchableLinks.filter((item) => item.label.toLowerCase().includes(searchTerm.trim().toLowerCase()))
     : searchableLinks;
 
+  const isSearching = searchTerm.trim().length > 0;
+
   return (
-    <header className="sticky top-0 w-full z-50 bg-red-600 text-white shadow-lg shadow-red-600/20">
+    <header ref={headerRef} className="sticky top-0 w-full z-[70] bg-red-600 text-white shadow-lg shadow-red-600/20">
       <div className="mx-auto flex w-full max-w-7xl items-start justify-between gap-4 px-6 py-5 sm:items-center">
         <div className="min-w-0 flex-1 pr-2">
           <Link
@@ -87,6 +70,8 @@ export default function Header() {
             className="flex-shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition border-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 shadow-none hover:bg-white/10"
             aria-label="Search"
             onClick={() => {
+              setOpen(false);
+              setOpenGroups({});
               setSearchOpen((prev) => !prev);
               setSearchTerm("");
             }}
@@ -110,128 +95,149 @@ export default function Header() {
           <button
             type="button"
             className="flex-shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition border-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 shadow-none hover:bg-white/10"
-            aria-label="Toggle navigation"
+            aria-label={open ? "Close navigation" : "Open navigation"}
             aria-expanded={open}
-            onClick={() => setOpen((prev) => !prev)}
+            onClick={() => {
+              setSearchOpen(false);
+              setSearchTerm("");
+              setOpen((prev) => !prev);
+            }}
           >
-            <span className="sr-only">Toggle navigation</span>
-            <span className="flex h-5 w-5 flex-col justify-between">
-              <span className="block h-0.5 w-full rounded-full bg-white" />
-              <span className="block h-0.5 w-full rounded-full bg-white" />
-              <span className="block h-0.5 w-full rounded-full bg-white" />
-            </span>
+            <span className="sr-only">{open ? "Close navigation" : "Open navigation"}</span>
+            {open ? (
+              <span className="text-2xl font-bold leading-none">×</span>
+            ) : (
+              <span className="flex h-5 w-5 flex-col justify-between">
+                <span className="block h-0.5 w-full rounded-full bg-white" />
+                <span className="block h-0.5 w-full rounded-full bg-white" />
+                <span className="block h-0.5 w-full rounded-full bg-white" />
+              </span>
+            )}
           </button>
         </div>
       </div>
 
       {searchOpen ? (
-        <div
-          className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
+        <button
+          type="button"
+          className="fixed z-[55] bg-black/40"
+          style={{ top: headerHeight, bottom: 0, left: 0, right: 0 }}
           onClick={() => {
             setSearchOpen(false);
             setSearchTerm("");
           }}
-        >
-          <div
-            className="mx-auto mt-20 w-[min(92vw,32rem)] rounded-2xl bg-white p-4 text-slate-900 shadow-2xl"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="h-5 w-5 text-slate-500"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.2-5.2m2.2-5.3a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
-                />
-              </svg>
-              <input
-                ref={searchInputRef}
-                type="text"
-                value={searchTerm}
-                onChange={(event) => setSearchTerm(event.target.value)}
-                placeholder="Search pages"
-                className="w-full border-none bg-transparent text-sm outline-none"
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchOpen(false);
-                  setSearchTerm("");
-                }}
-                className="text-sm font-semibold text-slate-500"
-                aria-label="Close search"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className="mt-3 max-h-[60vh] space-y-1 overflow-y-auto scrollbar-hide">
-              {filteredSearchResults.length > 0 ? (
-                filteredSearchResults.map((item) => (
-                  <Link
-                    key={`${item.href}-${item.label}`}
-                    href={item.href}
-                    onClick={() => {
-                      setSearchOpen(false);
-                      setSearchTerm("");
-                      setOpen(false);
-                      setServicesOpen(false);
-                      setWhoWeServeOpen(false);
-                    }}
-                    className="block rounded-lg px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-100"
-                  >
-                    <span className="font-medium">{item.label}</span>
-                    {item.group ? <span className="ml-2 text-xs text-slate-500">{item.group}</span> : null}
-                  </Link>
-                ))
-              ) : (
-                <p className="px-3 py-2 text-sm text-slate-500">No matching pages found.</p>
-              )}
-            </div>
-          </div>
-        </div>
+          aria-label="Close search overlay"
+        />
       ) : null}
 
       <div
-        className={`fixed inset-y-0 right-0 z-30 w-full max-w-xs transform bg-red-700 p-6 transition-transform duration-300 ease-in-out shadow-2xl shadow-black/25 ${
+        className={`fixed right-0 z-[60] w-full transform bg-red-700 p-6 transition-transform duration-300 ease-in-out shadow-2xl shadow-black/25 ${
+          searchOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        style={{ top: headerHeight, bottom: 0, left: 0 }}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="mx-auto w-full max-w-7xl text-white">
+          <div className="w-full">
+            <div className="relative">
+              <div className="flex items-center gap-2 border border-white bg-white px-3 py-2 rounded-md">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="h-5 w-5 text-slate-500"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-5.2-5.2m2.2-5.3a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
+                  />
+                </svg>
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchTerm}
+                  onChange={(event) => setSearchTerm(event.target.value)}
+                  placeholder="Search pages"
+                  className="w-full border-none bg-white text-sm text-slate-900 outline-none h-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchOpen(false);
+                    setSearchTerm("");
+                  }}
+                  className="text-sm font-semibold text-slate-500"
+                  aria-label="Close search"
+                >
+                  →
+                </button>
+              </div>
+
+              {isSearching ? (
+                <div className="absolute inset-x-0 top-full z-20 mt-3 max-h-[60vh] overflow-y-auto bg-transparent text-white">
+                  {filteredSearchResults.length > 0 ? (
+                    filteredSearchResults.map((item) => (
+                      <Link
+                        key={`${item.href}-${item.label}`}
+                        href={item.href}
+                        onClick={() => {
+                          setSearchOpen(false);
+                          setSearchTerm("");
+                          setOpen(false);
+                          setOpenGroups({});
+                        }}
+                        className="block w-full px-4 py-4 text-sm font-medium text-white transition hover:text-red-200"
+                      >
+                        <span>{item.label}</span>
+                        {item.group ? <span className="ml-2 text-xs text-white/70">{item.group}</span> : null}
+                      </Link>
+                    ))
+                  ) : (
+                    <p className="px-4 py-4 text-sm text-white/80">No matching pages found.</p>
+                  )}
+                </div>
+              ) : null}
+            </div>
+
+            <div className={`mt-6 space-y-4 text-white ${isSearching ? "opacity-0 pointer-events-none" : ""}`}>
+              <p className="text-sm text-white/90">
+                Professional security, logistics, and consultancy support for organizations that require dependable protection and practical operational continuity.
+              </p>
+
+              <p className="text-sm text-white/80">© 2026 Red Salamander Security. Trusted protection for modern enterprises.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`fixed right-0 z-[40] w-full transform bg-red-700 p-6 transition-transform duration-300 ease-in-out shadow-2xl shadow-black/25 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{ top: headerHeight, bottom: 0, left: 0 }}
       >
-        <div className="mb-4 flex justify-end">
-          <button
-            type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-transparent bg-transparent text-white focus:outline-none focus-visible:outline-none focus:ring-0 hover:bg-white/10"
-            aria-label="Close navigation"
-            onClick={() => setOpen(false)}
-          >
-            ×
-          </button>
-        </div>
+        {/* close button removed from inside the drawer — header toggle transforms into cancel */}
         <div className="space-y-3 overflow-y-auto max-h-[calc(100vh-120px)] scrollbar-hide">
           {navLinks.map((link) => {
-            const isServicesDropdown = link.label === "What we do";
-            const isWhoWeServeDropdown = link.label === "Who we serve";
-            const isJoinUsDropdown = link.label === "Join Us";
-            const isFindUsDropdown = link.label === "Find us";
-            const isOpen = isServicesDropdown ? servicesOpen : isWhoWeServeDropdown ? whoWeServeOpen : isJoinUsDropdown ? joinUsOpen : isFindUsDropdown ? findUsOpen : false;
-            const setIsOpen = isServicesDropdown ? setServicesOpen : isWhoWeServeDropdown ? setWhoWeServeOpen : isJoinUsDropdown ? setJoinUsOpen : isFindUsDropdown ? setFindUsOpen : () => {};
-            const ref = isServicesDropdown ? servicesRef : isWhoWeServeDropdown ? whoWeServeRef : isJoinUsDropdown ? joinUsRef : isFindUsDropdown ? findUsRef : null;
+            const isOpen = !!openGroups[link.label];
+            const toggleGroup = () => {
+              setOpenGroups((prev) => ({
+                ...prev,
+                [link.label]: !prev[link.label],
+              }));
+            };
 
             return (
-              <div key={`${link.label}-${link.href}`} ref={ref} className="border-b-2 border-white/60 py-2 last:border-b-0">
+              <div key={`${link.label}-${link.href}`} className="border-b-2 border-white/60 py-2 last:border-b-0">
                 {link.children ? (
                   <>
                     <button
                       type="button"
                       className="flex w-full items-center justify-between rounded-2xl border border-transparent bg-transparent px-4 py-4 text-left text-sm font-semibold text-white transition-colors duration-150 hover:bg-white/10 focus:outline-none focus-visible:outline-none focus:ring-0"
-                      onClick={() => setIsOpen((prev: boolean) => !prev)}
+                      onClick={toggleGroup}
                     >
                       {link.label}
                       <span className={`inline-block transition-transform duration-150 ${isOpen ? "rotate-180" : "rotate-0"}`}>
@@ -248,7 +254,7 @@ export default function Header() {
                             className="block rounded px-3 py-2 text-sm font-medium text-white/95 hover:bg-white/10"
                             onClick={() => {
                               setOpen(false);
-                              setIsOpen(false);
+                              setOpenGroups({});
                             }}
                           >
                             {child.label}
@@ -261,7 +267,10 @@ export default function Header() {
                   <Link
                     href={link.href}
                     className="block rounded-2xl border border-transparent bg-transparent px-4 py-4 text-sm font-semibold text-white transition-colors duration-150 focus:outline-none focus-visible:outline-none focus:ring-0 hover:bg-white/10"
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      setOpen(false);
+                      setOpenGroups({});
+                    }}
                   >
                     {link.label}
                   </Link>
@@ -275,8 +284,12 @@ export default function Header() {
       {open ? (
         <button
           type="button"
-          onClick={() => setOpen(false)}
-          className="fixed inset-0 z-20 bg-black/40"
+          onClick={() => {
+            setOpen(false);
+            setOpenGroups({});
+          }}
+          className="fixed right-0 z-20 bg-black/40"
+          style={{ top: headerHeight, bottom: 0, left: 0 }}
           aria-label="Close navigation overlay"
         />
       ) : null}
