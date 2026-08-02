@@ -1,0 +1,43 @@
+export const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "Who we are", href: "/about" },
+  {
+    label: "What we do",
+    href: "#",
+    children: [
+      { label: "Executive Travel Security", href: "/services/executive-travel" },
+      { label: "Escorts", href: "/services/escorts" },
+      { label: "Staff Vetting", href: "/services/staff-vetting" },
+      { label: "Operations / Logistics", href: "/services/operations" },
+      { label: "Agribusiness & Hospitality", href: "/services/agribusiness" },
+    ],
+  },
+  {
+    label: "Who we serve",
+    href: "#",
+    children: [
+      { label: "Private citizens", href: "#" },
+      { label: "Commercial properties", href: "#" },
+      { label: "Construction site", href: "#" },
+      { label: "Data center", href: "#" },
+      { label: "Financial industry", href: "#" },
+      { label: "Government and diplomatic missions", href: "#" },
+      { label: "Healthcare", href: "#" },
+      { label: "Higher education", href: "#" },
+      { label: "Industrial security", href: "#" },
+      { label: "International organizations", href: "#" },
+      { label: "Logistics and transportation", href: "#" },
+      { label: "Malls, shopping centers and retail", href: "#" },
+      { label: "Manufacturing", href: "#" },
+      { label: "Oil, gas and energy sectors", href: "#" },
+      { label: "Ports and logistics security", href: "#" },
+      { label: "Residential", href: "#" },
+    ],
+  },
+  {
+    label: "Join Us",
+    href: "#",
+    children: [{ label: "Working at Red Salamander Security", href: "/features" }],
+  },
+  { label: "Contact", href: "/contact" },
+];
