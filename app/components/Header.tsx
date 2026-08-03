@@ -299,8 +299,8 @@ export default function Header() {
             );
           })}
         </div>
-        <div className="w-full p-6 mt-auto shrink-0 border-t border-white/20 relative z-10 bg-red-600">
-          <div className="mb-4 mt-2">
+        <div className="w-full p-6 mt-auto shrink-0 border-t border-white/20 relative z-10 bg-red-600 space-y-4">
+          <div className="space-y-1">
             <Link
               href="/"
               className="relative block w-full max-w-[12rem] whitespace-normal break-words"
@@ -317,16 +317,18 @@ export default function Header() {
               </span>
             </Link>
           </div>
-          <p className="max-w-[18rem] text-left leading-5 text-white/90 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem]">
-            We provide trusted security, logistics, and consultancy support for organizations that value dependable protection and calm operational continuity.
-          </p>
-          <p className="max-w-[18rem] text-left text-sm leading-5 text-white/90 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem]">
-            Digital Solutions by
-            <span className="mt-1 block leading-tight uppercase text-white">
-              <span className="block text-[0.7rem] font-extrabold tracking-[0.24em] sm:text-[0.78rem] md:text-[0.95rem]">Smartloop</span>
-              <span className="mt-1 block text-[0.62rem] font-light tracking-[0.24em] sm:text-[0.68rem] md:text-[0.8rem]">Limited</span>
-            </span>
-          </p>
+          <div className="space-y-3">
+            <p className="max-w-[18rem] text-left leading-6 text-white/90 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem]">
+              We provide trusted security, logistics, and consultancy support for organizations that value dependable protection and calm operational continuity.
+            </p>
+            <p className="max-w-[18rem] text-left text-sm leading-6 text-white/90 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem]">
+              Digital Solutions by
+              <span className="mt-1 block leading-tight uppercase text-white">
+                <span className="block text-[0.7rem] font-extrabold tracking-[0.24em] sm:text-[0.78rem] md:text-[0.95rem]">Smartloop</span>
+                <span className="mt-1 block text-[0.62rem] font-light tracking-[0.24em] sm:text-[0.68rem] md:text-[0.8rem]">Limited</span>
+              </span>
+            </p>
+          </div>
           <p className="max-w-[18rem] text-left text-sm leading-5 text-white/80 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem]">© 2026 Red Salamander Security. Trusted protection for modern enterprises.</p>
         </div>
       </div>
