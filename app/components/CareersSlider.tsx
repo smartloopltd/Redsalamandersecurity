@@ -5,23 +5,23 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const slides = [
   {
     title: "Security Operations",
-    description: "Frontline roles in guarding, patrol and incident response.",
+    description: "Frontline guarding, patrol, and incident response.",
   },
   {
     title: "Intelligence & Risk",
-    description: "Analysis positions focused on threat detection and risk mitigation.",
+    description: "Threat detection, risk assessment, and analysis.",
   },
   {
     title: "Logistics Support",
-    description: "Operational roles coordinating transport, deployment, and supplies.",
+    description: "Coordinating transport, deployment, and supply chains.",
   },
   {
     title: "Client Services",
-    description: "Customer-facing jobs serving clients and managing stakeholder needs.",
+    description: "Serving clients and managing stakeholder needs.",
   },
   {
     title: "Training & Development",
-    description: "Professional development roles for safety, skills, and readiness programs.",
+    description: "Skills training, readiness, and safety coaching.",
   },
 ];
 
@@ -52,7 +52,11 @@ export default function CareersSlider() {
   }, []);
 
   const slidePixelWidth = useMemo(() => {
-    return viewportWidth && visibleCount ? Math.floor(viewportWidth / visibleCount) : 0;
+    if (!viewportWidth || !visibleCount) return 0;
+    const factor = viewportWidth < 640 ? 0.52 : viewportWidth < 1024 ? 0.72 : 0.82;
+    const width = Math.floor((viewportWidth / visibleCount) * factor);
+    const maxWidth = viewportWidth < 640 ? 280 : viewportWidth < 1024 ? 340 : 380;
+    return Math.min(width, maxWidth);
   }, [viewportWidth, visibleCount]);
 
   useEffect(() => {
@@ -92,15 +96,15 @@ export default function CareersSlider() {
         {loopSlides.map((slide, index) => (
           <div
             key={`${slide.title}-${index}`}
-            className="flex-none box-border px-2 py-3"
+            className="flex-none box-border px-2 py-2"
             style={slidePixelWidth ? { minWidth: `${slidePixelWidth}px` } : undefined}
           >
-            <div className="flex h-full max-h-[280px] min-h-[220px] flex-col justify-between bg-slate-950 p-5 text-white">
+            <div className="flex h-full max-h-[260px] min-h-[200px] flex-col justify-between bg-slate-950 p-4 text-white">
               <div>
-                <p className="text-xs uppercase tracking-[0.35em] text-red-400">Slide</p>
-                <h3 className="mt-3 text-lg font-semibold text-white">{slide.title}</h3>
+                <p className="text-[0.625rem] uppercase tracking-[0.35em] text-red-400">Slide</p>
+                <h3 className="mt-2 text-base font-semibold text-white">{slide.title}</h3>
               </div>
-              <p className="mt-4 text-sm leading-6 text-slate-300">{slide.description}</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{slide.description}</p>
             </div>
           </div>
         ))}
