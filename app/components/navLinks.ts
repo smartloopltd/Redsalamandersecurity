@@ -45,7 +45,10 @@ export const navLinks = [
   {
     label: "Join Us",
     href: "#",
-    children: [{ label: "Working at Red Salamander Security", href: "/features" }],
+    children: [
+      { label: "Working at Red Salamander Security", href: "/features" },
+      { label: "Careers and Employment", href: "/careers-and-employment" },
+    ],
   },
   {
     label: "Find us",

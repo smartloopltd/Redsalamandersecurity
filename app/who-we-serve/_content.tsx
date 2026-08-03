@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BlankHeroSection from "../components/BlankHeroSection";
 
 export const whoServeContent = {
   "private-citizens": {
@@ -172,11 +173,13 @@ export function WhoServePage({ slug }: { slug: keyof typeof whoServeContent }) {
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
+      <BlankHeroSection eyebrow="Who we serve" title={page.title} subtitle={page.summary} />
       <section className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-20 sm:px-8 lg:px-12">
         <div className="space-y-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-red-600">Who we serve</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">{page.title}</h1>
-          <p className="max-w-3xl text-lg leading-8 text-slate-700">{page.summary}</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-red-600">Sector support</p>
+          <p className="max-w-3xl text-lg leading-8 text-slate-700">
+            This sector page explains how Red Salamader Security provides tailored protection, operational coordination, and steady response for the environments and people you care about.
+          </p>
         </div>
 
         <div className="space-y-6">

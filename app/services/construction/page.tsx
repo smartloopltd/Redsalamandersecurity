@@ -1,19 +1,21 @@
 import Link from "next/link";
+import BlankHeroSection from "../../components/BlankHeroSection";
 
 export default function ConstructionPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
-      <section className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-20 sm:px-8 lg:px-12">
-        <div className="space-y-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-red-600">What we do</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">Construction Security</h1>
-          <p className="max-w-3xl text-lg leading-8 text-slate-700">
-            We protect active construction environments with practical security that supports progress, access control, and the safety of people and assets.
-          </p>
-        </div>
+      <BlankHeroSection
+        eyebrow="What we do"
+        title="Construction Services"
+        subtitle="We support construction projects with dependable operational oversight, site logistics, and workforce coordination that keeps work moving smoothly."
+      />
 
-        <div className="space-y-4 text-slate-700">
-          <p>Our construction support helps keep projects on track by reducing risk around entry points, materials, crews, and evolving site conditions.</p>
+      <section className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-16 sm:px-8 lg:px-12">
+        <div className="space-y-4">
+          <h2 className="text-xl font-semibold text-slate-950">Supporting construction delivery from start to finish</h2>
+          <p className="max-w-3xl text-lg leading-8 text-slate-700">
+            Our construction services help projects stay on schedule by improving site coordination, managing access, and supporting the safety and efficiency of materials, crews, and workflows.
+          </p>
         </div>
 
         <div className="flex flex-wrap gap-4 text-sm font-semibold text-red-600">
