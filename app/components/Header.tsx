@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { navLinks } from "./navLinks";
+import PanelFooter from "./PanelFooter";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -131,8 +132,8 @@ export default function Header() {
       ) : null}
 
       <div
-        className={`fixed right-0 z-[60] w-full transform overflow-y-auto overflow-x-hidden bg-red-700 p-6 pb-10 transition-transform duration-300 ease-in-out shadow-2xl shadow-black/25 ${
-          searchOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed right-0 z-[60] w-full transform overflow-y-auto overflow-x-hidden bg-red-700 p-6 pb-10 transition-[transform,opacity] duration-300 ease-out will-change-transform will-change-opacity ${
+          searchOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         }`}
         style={{ top: headerHeight, bottom: 0, left: 0 }}
         onClick={(event) => event.stopPropagation()}
@@ -203,46 +204,48 @@ export default function Header() {
             </div>
           </div>
 
-          <div className={`mt-6 space-y-2 border-t border-white/30 pt-4 pb-12 text-white sm:mt-7 sm:pt-4 sm:pb-14 lg:mt-10 lg:pt-6 lg:pb-16 lg:min-h-[15rem] ${isSearching ? "opacity-0 pointer-events-none" : ""}`}>
-            <div className="mb-4 mt-2">
-              <Link
-                href="/"
-                className="block max-w-[12rem] whitespace-normal break-words"
-                onClick={() => {
-                  setSearchOpen(false);
-                  setSearchTerm("");
-                }}
-              >
-                <span className="block text-[0.88rem] font-extrabold leading-tight tracking-tight uppercase">
-                  Red Salamander
-                </span>
-                <span className="block -mt-1 text-[0.68rem] font-light tracking-[0.28em] uppercase">
-                  SECURITY
-                </span>
-              </Link>
-            </div>
-            <p className="max-w-[18rem] text-left text-sm leading-5 text-white/90 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem] sm:text-[0.95rem] lg:text-sm">
-              We provide trusted security, logistics, and consultancy support for organizations that value dependable protection and calm operational continuity.
-            </p>
-            <p className="max-w-[18rem] text-left text-sm leading-5 text-white/90 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem] sm:text-[0.95rem] lg:text-sm">
-              Digital Solutions by
-              <span className="mt-1 block leading-tight uppercase text-white">
-                <span className="block text-[0.7rem] font-extrabold tracking-[0.24em] sm:text-[0.78rem] md:text-[0.95rem] lg:text-[0.95rem]">Smartloop</span>
-                <span className="mt-1 block text-[0.62rem] font-light tracking-[0.24em] sm:text-[0.68rem] md:text-[0.8rem] lg:text-[0.85rem]">Limited</span>
-              </span>
-            </p>
-            <p className="max-w-[18rem] text-left text-sm leading-5 text-white/80 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem] sm:text-[0.95rem] lg:text-sm">© 2026 Red Salamander Security. Trusted protection for modern enterprises.</p>
-          </div>
+          <PanelFooter
+            className={isSearching ? "opacity-0 pointer-events-none" : ""}
+            onBrandClick={() => {
+              setSearchOpen(false);
+              setSearchTerm("");
+            }}
+          />
         </div>
       </div>
 
       <div
-        className={`fixed right-0 left-0 z-[50] flex flex-col bg-red-600 text-white overflow-y-auto w-full transform p-0 transition-transform duration-300 ease-in-out ${
-          open ? "translate-x-0" : "translate-x-full"
+        className={`fixed right-0 left-0 z-[50] flex flex-col bg-red-700 text-white overflow-y-auto w-full transform p-6 pb-10 transition-[transform,opacity] duration-300 ease-out shadow-2xl shadow-black/25 will-change-transform will-change-opacity ${
+          open ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         }`}
         style={{ top: headerHeight, bottom: 0, left: 0 }}
       >
-        <div className="flex-1 w-full px-6 py-4 flex flex-col justify-start gap-2">
+        <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between text-white">
+          <div className="flex items-center justify-between gap-4 border-b border-white/15 pb-4 pt-2">
+            <Link
+              href="/"
+              className="block max-w-[10rem] whitespace-normal break-words text-sm font-extrabold uppercase tracking-tight"
+              onClick={() => {
+                setOpen(false);
+                setOpenGroups({});
+              }}
+            >
+              Red Salamander
+            </Link>
+            <button
+              type="button"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition hover:bg-white/10"
+              onClick={() => {
+                setOpen(false);
+                setOpenGroups({});
+              }}
+              aria-label="Close menu"
+            >
+              <span className="text-2xl font-bold leading-none">×</span>
+            </button>
+          </div>
+
+          <div className="flex-1 w-full px-0 py-6 flex flex-col justify-start gap-2">
           {navLinks.map((link) => {
             const isOpen = !!openGroups[link.label];
             const toggleGroup = () => {
@@ -299,38 +302,13 @@ export default function Header() {
             );
           })}
         </div>
-        <div className="w-full p-6 mt-auto shrink-0 border-t border-white/20 relative z-10 bg-red-600 space-y-4">
-          <div className="space-y-1">
-            <Link
-              href="/"
-              className="relative block w-full max-w-[12rem] whitespace-normal break-words"
-              onClick={() => {
-                setOpen(false);
-                setOpenGroups({});
-              }}
-            >
-              <span className="block text-[0.88rem] font-extrabold leading-tight tracking-tight uppercase">
-                Red Salamander
-              </span>
-              <span className="block -mt-1 text-[0.68rem] font-light tracking-[0.28em] uppercase">
-                SECURITY
-              </span>
-            </Link>
-          </div>
-          <div className="space-y-3">
-            <p className="max-w-[18rem] text-left leading-6 text-white/90 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem]">
-              We provide trusted security, logistics, and consultancy support for organizations that value dependable protection and calm operational continuity.
-            </p>
-            <p className="max-w-[18rem] text-left text-sm leading-6 text-white/90 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem]">
-              Digital Solutions by
-              <span className="mt-1 block leading-tight uppercase text-white">
-                <span className="block text-[0.7rem] font-extrabold tracking-[0.24em] sm:text-[0.78rem] md:text-[0.95rem]">Smartloop</span>
-                <span className="mt-1 block text-[0.62rem] font-light tracking-[0.24em] sm:text-[0.68rem] md:text-[0.8rem]">Limited</span>
-              </span>
-            </p>
-          </div>
-          <p className="max-w-[18rem] text-left text-sm leading-5 text-white/80 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem]">© 2026 Red Salamander Security. Trusted protection for modern enterprises.</p>
-        </div>
+        <PanelFooter
+          onBrandClick={() => {
+            setOpen(false);
+            setOpenGroups({});
+          }}
+        />
+      </div>
       </div>
 
       {open ? (
