@@ -214,8 +214,8 @@ export default function Header() {
       </div>
 
       <div
-        className={`fixed right-0 left-0 z-[50] flex flex-col bg-red-700 text-white overflow-y-auto w-full transform p-6 pb-10 transition-[transform,opacity] duration-300 ease-out shadow-2xl shadow-black/25 will-change-transform will-change-opacity ${
-          open ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+        className={`fixed right-0 left-0 z-[50] flex flex-col bg-red-700 text-white overflow-y-auto w-full transform p-6 pb-10 transition-transform transition-opacity duration-500 ease-in-out shadow-2xl shadow-black/25 will-change-transform ${
+          open ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-full opacity-0 pointer-events-none"
         }`}
         style={{ top: headerHeight, bottom: 0, left: 0 }}
       >
