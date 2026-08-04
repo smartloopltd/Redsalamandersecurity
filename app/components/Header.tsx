@@ -278,15 +278,14 @@ export default function Header() {
               </div>
             );
           })}
-          <div className="mt-6 border-t border-white/20 pt-4">
-            <PanelFooter
-              onBrandClick={() => {
-                setOpen(false);
-                setOpenGroups({});
-              }}
-            />
-          </div>
         </div>
+
+        <PanelFooter
+          onBrandClick={() => {
+            setOpen(false);
+            setOpenGroups({});
+          }}
+        />
       </div>
       </div>
 
