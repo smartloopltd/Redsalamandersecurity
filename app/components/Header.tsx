@@ -119,7 +119,7 @@ export default function Header() {
 
       <button
         type="button"
-        className={`fixed z-[55] bg-black/40 transition-opacity duration-500 ease-in-out ${
+        className={`fixed z-[55] bg-black/40 transition-opacity duration-400 ease-in-out ${
           searchOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         style={{ top: headerHeight, bottom: 0, left: 0, right: 0 }}
@@ -131,7 +131,7 @@ export default function Header() {
       />
 
       <div
-        className={`fixed right-0 z-[60] w-full transform overflow-y-auto overflow-x-hidden bg-red-700 p-6 pb-10 transition-transform transition-opacity duration-500 ease-in-out will-change-transform ${
+        className={`fixed right-0 z-[60] w-full transform-gpu will-change-transform overflow-y-auto overflow-x-hidden bg-red-700 p-6 pb-10 transition-transform transition-opacity duration-400 ease-in-out ${
           searchOpen ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-full opacity-0 pointer-events-none"
         }`}
         style={{ top: headerHeight, bottom: 0, left: 0 }}
@@ -214,7 +214,7 @@ export default function Header() {
       </div>
 
       <div
-        className={`fixed right-0 left-0 z-[50] flex flex-col bg-red-700 text-white overflow-y-auto w-full transform p-6 pb-10 transition-transform transition-opacity duration-500 ease-in-out shadow-2xl shadow-black/25 will-change-transform ${
+        className={`fixed right-0 left-0 z-[50] flex flex-col bg-red-700 text-white overflow-y-auto w-full transform-gpu will-change-transform p-6 pb-10 transition-transform transition-opacity duration-400 ease-in-out shadow-2xl shadow-black/25 ${
           open ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-full opacity-0 pointer-events-none"
         }`}
         style={{ top: headerHeight, bottom: 0, left: 0 }}
@@ -294,7 +294,7 @@ export default function Header() {
           setOpen(false);
           setOpenGroups({});
         }}
-        className={`fixed right-0 z-20 bg-black/40 transition-opacity duration-500 ease-in-out ${
+        className={`fixed right-0 z-20 bg-black/40 transition-opacity duration-400 ease-in-out ${
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         style={{ top: headerHeight, bottom: 0, left: 0 }}
