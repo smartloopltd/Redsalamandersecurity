@@ -117,22 +117,22 @@ export default function Header() {
         </div>
       </div>
 
-      {searchOpen ? (
-        <button
-          type="button"
-          className="fixed z-[55] bg-black/40"
-          style={{ top: headerHeight, bottom: 0, left: 0, right: 0 }}
-          onClick={() => {
-            setSearchOpen(false);
-            setSearchTerm("");
-          }}
-          aria-label="Close search overlay"
-        />
-      ) : null}
+      <button
+        type="button"
+        className={`fixed z-[55] bg-black/40 transition-opacity duration-500 ease-in-out ${
+          searchOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        style={{ top: headerHeight, bottom: 0, left: 0, right: 0 }}
+        onClick={() => {
+          setSearchOpen(false);
+          setSearchTerm("");
+        }}
+        aria-label="Close search overlay"
+      />
 
       <div
-        className={`fixed right-0 z-[60] w-full transform overflow-y-auto overflow-x-hidden bg-red-700 p-6 pb-10 transition-[transform,opacity] duration-300 ease-out will-change-transform will-change-opacity ${
-          searchOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+        className={`fixed right-0 z-[60] w-full transform overflow-y-auto overflow-x-hidden bg-red-700 p-6 pb-10 transition-transform transition-opacity duration-500 ease-in-out will-change-transform ${
+          searchOpen ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-full opacity-0 pointer-events-none"
         }`}
         style={{ top: headerHeight, bottom: 0, left: 0 }}
         onClick={(event) => event.stopPropagation()}
@@ -288,18 +288,18 @@ export default function Header() {
       </div>
       </div>
 
-      {open ? (
-        <button
-          type="button"
-          onClick={() => {
-            setOpen(false);
-            setOpenGroups({});
-          }}
-          className="fixed right-0 z-20 bg-black/40"
-          style={{ top: headerHeight, bottom: 0, left: 0 }}
-          aria-label="Close navigation overlay"
-        />
-      ) : null}
+      <button
+        type="button"
+        onClick={() => {
+          setOpen(false);
+          setOpenGroups({});
+        }}
+        className={`fixed right-0 z-20 bg-black/40 transition-opacity duration-500 ease-in-out ${
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        style={{ top: headerHeight, bottom: 0, left: 0 }}
+        aria-label="Close navigation overlay"
+      />
     </header>
   );
 }
