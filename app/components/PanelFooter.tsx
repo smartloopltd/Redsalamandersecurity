@@ -10,7 +10,7 @@ type PanelFooterProps = {
 export default function PanelFooter({ className = "", onBrandClick }: PanelFooterProps) {
   return (
     <div
-      className={`w-full p-6 mt-auto shrink-0 relative z-10 bg-transparent text-slate-100 space-y-4 ${className}`}
+      className={`w-full px-6 py-4 mt-auto shrink-0 relative z-10 bg-transparent text-slate-100 space-y-3 ${className}`}
     >
       <div className="space-y-1">
         <Link

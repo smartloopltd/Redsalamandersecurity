@@ -214,15 +214,15 @@ export default function Header() {
       </div>
 
       <div
-        className={`fixed right-0 left-0 z-[50] flex flex-col bg-red-700 text-white overflow-y-auto w-full transform-gpu will-change-transform p-6 pb-10 transition-transform transition-opacity duration-400 ease-in-out shadow-2xl shadow-black/25 ${
+        className={`fixed right-0 left-0 z-[50] flex flex-col bg-red-700 text-white overflow-hidden w-full transform-gpu will-change-transform p-6 pb-6 transition-transform transition-opacity duration-400 ease-in-out shadow-2xl shadow-black/25 ${
           open ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-full opacity-0 pointer-events-none"
         }`}
         style={{ top: headerHeight, bottom: 0, left: 0 }}
       >
-        <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between text-white">
+        <div className="mx-auto flex h-full w-full max-w-7xl flex-1 flex-col justify-between text-white">
           <div className="flex items-center justify-end gap-4 border-b border-white/15 pb-4 pt-2" />
 
-          <div className="flex-1 w-full px-0 py-6 flex flex-col justify-start gap-2">
+          <div className="flex-1 w-full px-0 py-4 flex flex-col justify-start gap-2 overflow-hidden">
           {navLinks.map((link) => {
             const isOpen = !!openGroups[link.label];
             const toggleGroup = () => {
