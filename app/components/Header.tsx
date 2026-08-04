@@ -222,16 +222,7 @@ export default function Header() {
       >
         <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between text-white">
           <div className="flex items-center justify-between gap-4 border-b border-white/15 pb-4 pt-2">
-            <Link
-              href="/"
-              className="block max-w-[10rem] whitespace-normal break-words text-sm font-extrabold uppercase tracking-tight"
-              onClick={() => {
-                setOpen(false);
-                setOpenGroups({});
-              }}
-            >
-              Red Salamander
-            </Link>
+            <div className="block max-w-[10rem] whitespace-normal break-words text-sm font-extrabold uppercase tracking-tight" aria-hidden="true" />
             <button
               type="button"
               className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition hover:bg-white/10"
