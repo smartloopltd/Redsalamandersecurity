@@ -93,25 +93,27 @@ export default function Header() {
             </svg>
           </button>
 
-          {!open && (
-            <button
-              type="button"
-              className="flex-shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition border-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 shadow-none hover:bg-white/10"
-              aria-label="Open navigation"
-              onClick={() => {
-                setSearchOpen(false);
-                setSearchTerm("");
-                setOpen(true);
-              }}
-            >
-              <span className="sr-only">Open navigation</span>
+          <button
+            type="button"
+            className="flex-shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition border-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 shadow-none hover:bg-white/10"
+            aria-label={open ? "Close navigation" : "Open navigation"}
+            onClick={() => {
+              setSearchOpen(false);
+              setSearchTerm("");
+              setOpen((prev) => !prev);
+            }}
+          >
+            <span className="sr-only">{open ? "Close navigation" : "Open navigation"}</span>
+            {open ? (
+              <span className="text-2xl font-bold leading-none">×</span>
+            ) : (
               <span className="flex h-5 w-5 flex-col justify-between">
                 <span className="block h-0.5 w-full rounded-full bg-white" />
                 <span className="block h-0.5 w-full rounded-full bg-white" />
                 <span className="block h-0.5 w-full rounded-full bg-white" />
               </span>
-            </button>
-          )}
+            )}
+          </button>
         </div>
       </div>
 
@@ -218,19 +220,7 @@ export default function Header() {
         style={{ top: headerHeight, bottom: 0, left: 0 }}
       >
         <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between text-white">
-          <div className="flex items-center justify-end gap-4 border-b border-white/15 pb-4 pt-2">
-            <button
-              type="button"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition hover:bg-white/10"
-              onClick={() => {
-                setOpen(false);
-                setOpenGroups({});
-              }}
-              aria-label="Close menu"
-            >
-              <span className="text-2xl font-bold leading-none">×</span>
-            </button>
-          </div>
+          <div className="flex items-center justify-end gap-4 border-b border-white/15 pb-4 pt-2" />
 
           <div className="flex-1 w-full px-0 py-6 flex flex-col justify-start gap-2">
           {navLinks.map((link) => {
