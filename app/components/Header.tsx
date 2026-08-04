@@ -222,7 +222,7 @@ export default function Header() {
         <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between text-white">
           <div className="flex items-center justify-end gap-4 border-b border-white/15 pb-4 pt-2" />
 
-          <div className="flex-1 w-full px-0 py-4 flex flex-col justify-start gap-2 overflow-y-auto" style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}>
+          <div className="flex-1 w-full px-0 py-4 flex flex-col justify-start gap-2 overflow-y-auto scrollbar-hide" style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}>
           {navLinks.map((link) => {
             const isOpen = !!openGroups[link.label];
             const toggleGroup = () => {
