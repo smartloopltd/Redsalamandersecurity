@@ -182,7 +182,7 @@ export default function Header() {
         </div>
       </div>
 
-      <div className={`fixed inset-x-0 top-[5rem] bottom-0 z-40 flex flex-col bg-red-700/95 transform transition-transform duration-300 ease-out ${mobileSearchOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
+      <div className={`fixed inset-x-0 top-[4.5rem] bottom-0 z-40 flex flex-col bg-red-700/95 transform transition-transform duration-300 ease-out ${mobileSearchOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
         <div className="flex-1 overflow-y-auto px-6 py-6">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2 rounded-md border border-white/15 bg-white px-3 py-2">
@@ -234,7 +234,7 @@ export default function Header() {
         </div>
       </div>
 
-      <div className={`fixed inset-x-0 top-[5rem] bottom-0 z-40 flex flex-col bg-red-700/95 lg:hidden transform transition-transform duration-300 ease-out ${mobileOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
+      <div className={`fixed inset-x-0 top-[4.5rem] bottom-0 z-40 flex flex-col bg-red-700/95 lg:hidden transform transition-transform duration-300 ease-out ${mobileOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
         <div className="flex-1 overflow-y-auto px-6 pb-6 pt-2">
           <div className="space-y-3">
             {navLinks.map((link) => (
