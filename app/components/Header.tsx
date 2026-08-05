@@ -1,260 +1,264 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { navLinks } from "./navLinks";
-import PanelFooter from "./PanelFooter";
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
-  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [headerHeight, setHeaderHeight] = useState(0);
-  const searchInputRef = useRef<HTMLInputElement | null>(null);
-  const headerRef = useRef<HTMLElement | null>(null);
+  const navRef = useRef<HTMLDivElement | null>(null);
+  const [desktopOpenMenu, setDesktopOpenMenu] = useState<string | null>(null);
+  const [mobileOpenMenu, setMobileOpenMenu] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  useEffect(() => {
-    if (searchOpen) {
-      searchInputRef.current?.focus();
-    }
-  }, [searchOpen]);
-
-  useLayoutEffect(() => {
-    const updateHeaderHeight = () => {
-      setHeaderHeight(headerRef.current?.offsetHeight ?? 0);
-    };
-
-    updateHeaderHeight();
-    window.addEventListener("resize", updateHeaderHeight);
-    return () => window.removeEventListener("resize", updateHeaderHeight);
-  }, []);
-
-  const searchableLinks = navLinks.flatMap((link) =>
-    link.children
-      ? link.children
-          .filter((child) => child.href !== "#")
-          .map((child) => ({ label: child.label, href: child.href, group: link.label }))
-      : link.href !== "#"
-        ? [{ label: link.label, href: link.href, group: "" }]
-        : []
+  const suggestions = Array.from(
+    new Set(
+      navLinks.flatMap((link) => [
+        link.label,
+        ...(link.children?.map((child) => child.label) ?? []),
+      ])
+    )
   );
 
-  const filteredSearchResults = searchTerm.trim()
-    ? searchableLinks.filter((item) => item.label.toLowerCase().includes(searchTerm.trim().toLowerCase()))
-    : searchableLinks;
+  const filteredSuggestions = suggestions.filter((suggestion) =>
+    suggestion.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-  const isSearching = searchTerm.trim().length > 0;
+  useEffect(() => {
+    const handleDocumentClick = (event: MouseEvent) => {
+      if (!navRef.current) {
+        return;
+      }
+
+      const target = event.target as Node | null;
+      if (target && !navRef.current.contains(target)) {
+        setDesktopOpenMenu(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleDocumentClick);
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, []);
+
+  const mobilePanelFooter = (
+    <div className="space-y-4 border-t border-white/15 pt-6 text-slate-100">
+      <Link href="/" className="block">
+        <span className="block text-[0.78rem] font-extrabold leading-tight tracking-tight uppercase text-white">
+          Red Salamander
+        </span>
+        <span className="block -mt-1 text-[0.6rem] font-light tracking-[0.22em] uppercase text-white">
+          SECURITY
+        </span>
+      </Link>
+
+      <p className="max-w-md text-sm leading-5 text-slate-200">
+        <span className="block">Dependable protection</span>
+        <span className="block">and calm operations</span>
+      </p>
+
+      <div className="text-sm leading-5 text-slate-200">
+        Digital Solutions by
+        <span className="mt-1 block leading-tight uppercase text-white">
+          <span className="block text-[0.7rem] font-extrabold tracking-[0.24em] sm:text-[0.78rem] md:text-[0.95rem]">
+            Smartloop
+          </span>
+          <span className="mt-1 block text-[0.62rem] font-light tracking-[0.24em] sm:text-[0.68rem] md:text-[0.8rem]">
+            Limited
+          </span>
+        </span>
+      </div>
+
+      <p className="text-sm leading-5 text-red-100">
+        © 2026 Red Salamander Security. Trusted protection for modern enterprises.
+      </p>
+    </div>
+  );
 
   return (
-    <header ref={headerRef} className="sticky top-0 w-full z-[70] bg-red-600 text-white shadow-lg shadow-red-600/20">
-      <div className="mx-auto flex w-full max-w-7xl items-start justify-between gap-4 px-6 py-5 sm:items-center">
-        <div className="min-w-0 flex-1 pr-2">
-          <Link
-            href="/"
-            className="block max-w-[10rem] whitespace-normal break-words sm:max-w-[13rem] md:max-w-none"
-          >
-            <span className="block text-[0.78rem] sm:text-sm md:text-xl font-extrabold leading-tight tracking-tight uppercase">
-              Red Salamander
-            </span>
-            <span className="block -mt-1 text-[0.6rem] sm:text-xs md:text-sm font-light tracking-[0.22em] uppercase">
-              SECURITY
-            </span>
-          </Link>
-        </div>
+    <header className="fixed left-0 right-0 top-0 z-50 w-full bg-gradient-to-b from-red-600 via-red-700 to-red-800 text-white">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4 sm:px-8">
+        <Link
+          href="/"
+          onClick={() => setDesktopOpenMenu(null)}
+          className="inline-flex flex-col items-start gap-1 font-extrabold tracking-tight text-white"
+        >
+          <span className="block text-[0.78rem] sm:text-sm md:text-xl font-extrabold leading-tight tracking-tight uppercase text-white">
+            Red Salamander
+          </span>
+          <span className="block text-[0.6rem] sm:text-xs md:text-sm font-light tracking-[0.22em] uppercase text-red-200">
+            SECURITY
+          </span>
+        </Link>
 
-
-
-          <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 lg:gap-2">
           <button
             type="button"
-            className="flex-shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition border-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 shadow-none hover:bg-white/10"
-            aria-label="Search"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-white text-red-700 transition hover:bg-slate-100"
             onClick={() => {
-              setOpen(false);
-              setOpenGroups({});
-              setSearchOpen((prev) => !prev);
-              setSearchTerm("");
+              setMobileSearchOpen((current) => !current);
+              setMobileOpen(false);
             }}
+            aria-expanded={mobileSearchOpen}
+            aria-label="Open search"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-5 w-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.2-5.2m2.2-5.3a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
-              />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-5 w-5">
+              <circle cx="11" cy="11" r="7" strokeWidth="2" />
+              <path d="M16.65 16.65L21 21" strokeWidth="2" strokeLinecap="round" />
             </svg>
           </button>
 
           <button
             type="button"
-            className="flex-shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition border-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 shadow-none hover:bg-white/10"
-            aria-label={open ? "Close navigation" : "Open navigation"}
+            className="inline-flex items-center justify-center rounded-md border border-white/20 bg-white/10 p-2 text-white transition hover:bg-white/15 lg:hidden"
             onClick={() => {
-              setSearchOpen(false);
-              setSearchTerm("");
-              setOpen((prev) => !prev);
+              setMobileOpen((current) => !current);
+              setMobileSearchOpen(false);
             }}
+            aria-expanded={mobileOpen}
+            aria-label="Open menu"
           >
-            <span className="sr-only">{open ? "Close navigation" : "Open navigation"}</span>
-            {open ? (
-              <span className="text-2xl font-bold leading-none">×</span>
-            ) : (
-              <span className="flex h-5 w-5 flex-col justify-between">
-                <span className="block h-0.5 w-full rounded-full bg-white" />
-                <span className="block h-0.5 w-full rounded-full bg-white" />
-                <span className="block h-0.5 w-full rounded-full bg-white" />
-              </span>
-            )}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-5 w-5">
+              {mobileOpen ? (
+                <path d="M6 6l12 12M6 18L18 6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              ) : (
+                <>
+                  <path d="M4 7h16" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M4 12h16" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M4 17h16" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </>
+              )}
+            </svg>
           </button>
-        </div>
-      </div>
 
-      <button
-        type="button"
-        className={`fixed z-[55] bg-black/40 transition-opacity duration-400 ease-in-out ${
-          searchOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-        style={{ top: headerHeight, bottom: 0, left: 0, right: 0 }}
-        onClick={() => {
-          setSearchOpen(false);
-          setSearchTerm("");
-        }}
-        aria-label="Close search overlay"
-      />
+          <nav ref={navRef} className="hidden items-center gap-3 text-sm font-medium text-white lg:flex">
+            {navLinks.map((link, index) => {
+              const alignRight = index >= navLinks.length - 2;
 
-      <div
-        className={`fixed right-0 z-[60] w-full transform-gpu will-change-transform overflow-y-auto overflow-x-hidden bg-red-700 p-6 pb-10 transition-transform transition-opacity duration-400 ease-in-out ${
-          searchOpen ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-full opacity-0 pointer-events-none"
-        }`}
-        style={{ top: headerHeight, bottom: 0, left: 0 }}
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between text-white">
-          <div className="flex-1 min-h-0 lg:min-h-[16rem]">
-            <div className="relative">
-              <div className="flex items-center gap-2 border border-white bg-white px-3 py-2 rounded-md">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="h-5 w-5 text-slate-500"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-5.2-5.2m2.2-5.3a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
-                  />
-                </svg>
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  value={searchTerm}
-                  onChange={(event) => setSearchTerm(event.target.value)}
-                  placeholder="Search pages"
-                  className="w-full border-none bg-white text-sm text-slate-900 outline-none h-10"
-                />
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSearchOpen(false);
-                    setSearchTerm("");
-                  }}
-                  className="text-sm font-semibold text-slate-500"
-                  aria-label="Close search"
-                >
-                  →
-                </button>
-              </div>
-
-              {isSearching ? (
-                <div className="absolute inset-x-0 top-full z-20 mt-3 max-h-[60vh] overflow-y-auto bg-transparent text-white">
-                  {filteredSearchResults.length > 0 ? (
-                    filteredSearchResults.map((item) => (
-                      <Link
-                        key={`${item.href}-${item.label}`}
-                        href={item.href}
-                        onClick={() => {
-                          setSearchOpen(false);
-                          setSearchTerm("");
-                          setOpen(false);
-                          setOpenGroups({});
-                        }}
-                        className="block w-full px-4 py-4 text-sm font-medium text-white transition hover:text-red-200"
+              return (
+                <div key={link.label} className="relative">
+                  {link.children ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setDesktopOpenMenu((current) => (current === link.label ? null : link.label))}
+                        aria-expanded={desktopOpenMenu === link.label}
+                        className="inline-flex items-center gap-1 transition hover:text-red-200"
                       >
-                        <span>{item.label}</span>
-                        {item.group ? <span className="ml-2 text-xs text-white/70">{item.group}</span> : null}
-                      </Link>
-                    ))
+                        {link.label}
+                        <span className="text-xs">▾</span>
+                      </button>
+
+                      <div
+                        className={`absolute top-full z-50 mt-2 w-max min-w-[220px] max-w-[calc(100vw-2rem)] whitespace-nowrap overflow-hidden rounded-none border border-slate-900/10 bg-white text-slate-950 shadow-lg transition duration-150 ${
+                          alignRight ? "right-0 left-auto" : "left-0"
+                        } ${desktopOpenMenu === link.label ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                      >
+                        <div className="space-y-1 p-2 max-h-[70vh] overflow-y-auto">
+                          {link.children.map((child) => (
+                            <Link
+                              key={`${link.label}-${child.label}`}
+                              href={child.href}
+                              className="block px-4 py-2.5 whitespace-nowrap text-sm text-slate-700 transition hover:bg-red-50 hover:text-red-700"
+                              onClick={() => setDesktopOpenMenu(null)}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </>
                   ) : (
-                    <p className="px-4 py-4 text-sm text-white/80">No matching pages found.</p>
+                    <Link href={link.href} className="transition hover:text-red-200">
+                      {link.label}
+                    </Link>
                   )}
                 </div>
-              ) : null}
-            </div>
-          </div>
-
-          <PanelFooter
-            className={isSearching ? "opacity-0 pointer-events-none" : ""}
-            onBrandClick={() => {
-              setSearchOpen(false);
-              setSearchTerm("");
-            }}
-          />
+              );
+            })}
+          </nav>
         </div>
       </div>
 
-      <div
-        className={`fixed right-0 left-0 z-[50] flex flex-col bg-red-700 text-white overflow-hidden w-full transform-gpu will-change-transform p-6 pb-6 transition-transform transition-opacity duration-400 ease-in-out shadow-2xl shadow-black/25 ${
-          open ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-full opacity-0 pointer-events-none"
-        }`}
-        style={{ top: headerHeight, bottom: 0, left: 0 }}
-      >
-        <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-between text-white">
-          <div className="flex items-center justify-end gap-4 border-b border-white/15 pb-4 pt-2" />
+      <div className={`fixed inset-x-0 top-[5rem] bottom-0 z-40 flex flex-col bg-red-700/95 transform transition-transform duration-300 ease-out ${mobileSearchOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
+        <div className="flex-1 overflow-y-auto px-6 py-6">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-2 rounded-md border border-white/15 bg-white px-3 py-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-5 w-5 text-slate-950">
+                <circle cx="11" cy="11" r="7" strokeWidth="2" />
+                <path d="M16.65 16.65L21 21" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+              <input
+                type="search"
+                placeholder="Search"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                className="w-full bg-transparent text-slate-950 outline-none placeholder:text-slate-500"
+              />
+              <button
+                type="button"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-red-700 text-white transition hover:bg-red-800"
+                aria-label="Submit search"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-5 w-5">
+                  <path d="M5 12h14" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M13 6l6 6-6 6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
 
-          <div className="flex-1 w-full px-0 py-4 flex flex-col justify-start gap-2 overflow-y-auto scrollbar-hide" style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}>
-          {navLinks.map((link) => {
-            const isOpen = !!openGroups[link.label];
-            const toggleGroup = () => {
-              setOpenGroups((prev) => ({
-                ...prev,
-                [link.label]: !prev[link.label],
-              }));
-            };
+            {searchQuery.trim().length > 0 ? (
+              <div className="space-y-3 rounded-xl border border-white/15 bg-white/95 p-4 text-slate-950">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">Suggested searches</p>
+                <div className="grid gap-3">
+                  {filteredSuggestions.map((suggestion) => (
+                    <button
+                      key={suggestion}
+                      type="button"
+                      onClick={() => setSearchQuery(suggestion)}
+                      className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left text-sm font-medium text-slate-900 transition hover:bg-slate-100"
+                    >
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </div>
 
-            return (
-              <div key={`${link.label}-${link.href}`} className="border-b-2 border-white/60 py-1 last:border-b-0">
+        <div className="px-6 pb-6">
+          {mobilePanelFooter}
+        </div>
+      </div>
+
+      <div className={`fixed inset-x-0 top-[5rem] bottom-0 z-40 flex flex-col bg-red-700/95 lg:hidden transform transition-transform duration-300 ease-out ${mobileOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
+        <div className="flex-1 overflow-y-auto px-6 pb-6 pt-2">
+          <div className="space-y-3">
+            {navLinks.map((link) => (
+              <div key={link.label} className="space-y-1 rounded-none border-b border-red-700/30 pb-3 last:border-b-0 last:pb-0">
                 {link.children ? (
                   <>
                     <button
                       type="button"
-                      className="relative flex w-full items-center justify-between rounded-2xl border border-transparent bg-transparent px-4 py-2 text-left text-sm font-semibold text-white transition-colors duration-150 hover:bg-white/10 focus:outline-none focus-visible:outline-none focus:ring-0"
-                      onClick={toggleGroup}
+                      onClick={() => setMobileOpenMenu((current) => (current === link.label ? null : link.label))}
+                      className="flex w-full items-center justify-between text-left text-sm font-semibold text-white transition hover:text-red-200"
                     >
-                      <span>{link.label}</span>
-                      <span className="ml-4 text-lg leading-none">+</span>
+                      {link.label}
+                      <span className="text-xs">{mobileOpenMenu === link.label ? "▴" : "▾"}</span>
                     </button>
-
-                    {isOpen ? (
-                      <div className="mt-2 space-y-2 pl-4">
+                    {mobileOpenMenu === link.label ? (
+                      <div className="mt-2 space-y-1 pl-4">
                         {link.children.map((child) => (
                           <Link
-                            key={`${child.label}-${child.href}`}
+                            key={`${link.label}-${child.label}`}
                             href={child.href}
-                            className="relative block w-full rounded px-3 py-2 text-sm leading-6 font-medium text-white/95 hover:bg-white/10"
+                            className="block rounded-lg px-3 py-2 text-sm text-slate-100 transition hover:bg-red-600"
                             onClick={() => {
-                              setOpen(false);
-                              setOpenGroups({});
+                              setMobileOpen(false);
+                              setMobileOpenMenu(null);
                             }}
                           >
                             {child.label}
@@ -266,41 +270,21 @@ export default function Header() {
                 ) : (
                   <Link
                     href={link.href}
-                    className="relative block w-full rounded-2xl border border-transparent bg-transparent px-4 py-3 text-sm font-semibold text-white transition-colors duration-150 focus:outline-none focus-visible:outline-none focus:ring-0 hover:bg-white/10"
-                    onClick={() => {
-                      setOpen(false);
-                      setOpenGroups({});
-                    }}
+                    className="block rounded-lg px-3 py-2 text-sm text-white transition hover:bg-red-600"
+                    onClick={() => setMobileOpen(false)}
                   >
                     {link.label}
                   </Link>
                 )}
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
-        <PanelFooter
-          onBrandClick={() => {
-            setOpen(false);
-            setOpenGroups({});
-          }}
-        />
+        <div className="px-6 pb-6">
+          {mobilePanelFooter}
+        </div>
       </div>
-      </div>
-
-      <button
-        type="button"
-        onClick={() => {
-          setOpen(false);
-          setOpenGroups({});
-        }}
-        className={`fixed right-0 z-20 bg-black/40 transition-opacity duration-400 ease-in-out ${
-          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-        style={{ top: headerHeight, bottom: 0, left: 0 }}
-        aria-label="Close navigation overlay"
-      />
     </header>
   );
 }

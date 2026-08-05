@@ -19,13 +19,20 @@
   }
 }
 
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 html {
   min-height: 100%;
 }
 
 body {
   min-height: 100vh;
-  margin: 0;
   background: #f8fafc;
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
@@ -42,6 +49,13 @@ a {
 
 * {
   box-sizing: border-box;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 /* Hide scrollbar while keeping scroll functionality */

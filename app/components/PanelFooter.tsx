@@ -9,9 +9,11 @@ type PanelFooterProps = {
 
 export default function PanelFooter({ className = "", onBrandClick }: PanelFooterProps) {
   return (
-    <div
-      className={`w-full px-6 py-4 mt-auto shrink-0 relative z-10 bg-transparent text-slate-100 space-y-3 ${className}`}
-    >
+    <div className="w-full bg-transparent text-slate-100">
+      <div
+        className={`mx-auto max-w-7xl mt-auto shrink-0 relative z-10 bg-transparent text-slate-100 space-y-4 ${className}`}
+        style={{ paddingLeft: 'clamp(1.5rem, 5vw, 3rem)', paddingRight: 'clamp(1.5rem, 5vw, 3rem)', paddingTop: '1.5rem', paddingBottom: '1.5rem' }}
+      >
       <div className="space-y-1">
         <Link
           href="/"
@@ -48,6 +50,7 @@ export default function PanelFooter({ className = "", onBrandClick }: PanelFoote
       <p className="max-w-[18rem] text-left text-sm leading-5 text-white/80 sm:max-w-[24rem] md:max-w-[26rem] lg:max-w-[28rem]">
         © 2026 Red Salamander Security. Trusted protection for modern enterprises.
       </p>
+      </div>
     </div>
   );
 }
