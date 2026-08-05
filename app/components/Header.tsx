@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { navLinks } from "./navLinks";
 
@@ -25,27 +25,36 @@ export default function Header() {
     suggestion.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const closeAllPanels = useCallback(() => {
+    setDesktopOpenMenu(null);
+    setMobileOpen(false);
+    setMobileSearchOpen(false);
+    setMobileOpenMenu(null);
+  }, []);
+
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
-      if (!navRef.current) {
-        return;
-      }
-
-      const target = event.target as Node | null;
-      if (target && !navRef.current.contains(target)) {
+      if (
+        navRef.current &&
+        event.target instanceof Node &&
+        !navRef.current.contains(event.target)
+      ) {
         setDesktopOpenMenu(null);
       }
     };
 
     document.addEventListener("mousedown", handleDocumentClick);
+    window.addEventListener("closeMobilePanels", closeAllPanels);
+
     return () => {
       document.removeEventListener("mousedown", handleDocumentClick);
+      window.removeEventListener("closeMobilePanels", closeAllPanels);
     };
-  }, []);
+  }, [closeAllPanels]);
 
   const mobilePanelFooter = (
     <div className="space-y-4 border-t border-white/15 pt-6 text-slate-100">
-      <Link href="/" className="block">
+      <Link href="/" className="block" onClick={closeAllPanels}>
         <span className="block text-[0.78rem] font-extrabold leading-tight tracking-tight uppercase text-white">
           Red Salamander
         </span>
@@ -80,11 +89,7 @@ export default function Header() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 w-full bg-gradient-to-b from-red-600 via-red-700 to-red-800 text-white">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4 sm:px-8">
-        <Link
-          href="/"
-          onClick={() => setDesktopOpenMenu(null)}
-          className="inline-flex flex-col items-start gap-1 font-extrabold tracking-tight text-white"
-        >
+        <Link href="/" onClick={closeAllPanels} className="inline-flex flex-col items-start gap-1 font-extrabold tracking-tight text-white">
           <span className="block text-[0.78rem] sm:text-sm md:text-xl font-extrabold leading-tight tracking-tight uppercase text-white">
             Red Salamander
           </span>
@@ -210,15 +215,15 @@ export default function Header() {
             </div>
 
             {searchQuery.trim().length > 0 ? (
-              <div className="space-y-3 rounded-xl border border-white/15 bg-white/95 p-4 text-slate-950">
+              <div className="space-y-3 text-slate-950">
                 <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">Suggested searches</p>
-                <div className="grid gap-3">
+                <div className="grid gap-1">
                   {filteredSuggestions.map((suggestion) => (
                     <button
                       key={suggestion}
                       type="button"
                       onClick={() => setSearchQuery(suggestion)}
-                      className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left text-sm font-medium text-slate-900 transition hover:bg-slate-100"
+                      className="w-full rounded-none bg-white px-4 py-3 text-left text-sm font-medium text-slate-900 transition hover:bg-slate-100"
                     >
                       {suggestion}
                     </button>

@@ -16,7 +16,11 @@ export default function Footer() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.1),transparent_40%),linear-gradient(180deg,rgba(255,255,255,0.04)_0%,rgba(0,0,0,0.08)_100%)]" />
       <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-6 py-12 md:grid-cols-[1.3fr_0.8fr_1.1fr] md:items-start">
         <div className="space-y-3 border-b border-white/15 pb-6 md:border-b-0 md:border-r md:border-white/15 md:pr-8">
-          <Link href="/" className="block">
+          <Link
+            href="/"
+            className="block"
+            onClick={() => window.dispatchEvent(new Event('closeMobilePanels'))}
+          >
             <span className="block text-[0.78rem] sm:text-sm md:text-xl font-extrabold leading-tight tracking-tight uppercase text-white">
               Red Salamander
             </span>
