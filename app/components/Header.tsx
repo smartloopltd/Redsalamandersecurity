@@ -235,7 +235,7 @@ export default function Header() {
 
             {searchQuery.trim().length > 0 ? (
               <div className="space-y-3 text-slate-950">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">Suggested searches</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Suggested searches</p>
                 <div className="grid gap-1">
                   {filteredSuggestions.map((suggestion) => (
                     <button

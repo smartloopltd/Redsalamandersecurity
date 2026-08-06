@@ -42,7 +42,7 @@ export default function Footer() {
             </span>
           </Link>
           <p className="max-w-md text-sm leading-5 text-slate-200">
-            We provide trusted security, logistics, and consultancy support for organizations that value dependable protection and calm operational continuity.
+            Trusted security, logistics, and consultancy for steady operations.
           </p>
           <p className="text-sm leading-5 text-slate-200">
             Digital Solutions by

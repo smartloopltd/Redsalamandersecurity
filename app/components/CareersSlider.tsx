@@ -100,7 +100,15 @@ export default function CareersSlider() {
                 <p className="text-[0.625rem] uppercase tracking-[0.35em] text-red-400">Careers and employments</p>
                 <h3 className="mt-2 text-sm font-semibold text-white">{slide.title}</h3>
               </div>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{slide.description}</p>
+              <div className="mt-3 flex flex-col gap-4">
+                <p className="text-sm leading-6 text-slate-300">{slide.description}</p>
+                <a
+                  href="/careers-and-employment"
+                  className="text-sm font-semibold text-red-400 transition hover:text-red-300"
+                >
+                  Learn more
+                </a>
+              </div>
             </div>
           </div>
         ))}
