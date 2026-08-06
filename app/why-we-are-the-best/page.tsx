@@ -28,7 +28,7 @@ export default function WhyWeAreTheBestPage() {
       <section className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
         <div className="p-0 sm:p-0">
           <h2 className="mb-8 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-            Red Salamader Security combines practical protection, rapid response, and genuine care to help organizations stay safe, secure, and confident.
+            Red Salamander Security Operations combines practical protection, rapid response, and genuine care to help organizations stay safe, secure, and confident.
           </h2>
           <div className="space-y-8 text-lg leading-8 text-slate-600">
             <div>
@@ -52,7 +52,7 @@ export default function WhyWeAreTheBestPage() {
             <div>
               <p className="mb-2 text-xl font-semibold text-slate-900">Where Discipline Meets Dedication</p>
               <p>
-                At Red Salamader Security, excellence is not just a promise; it is a standard we live by every day. We are committed to helping organizations feel safe, supported, and confident, knowing that their security is in capable and caring hands.
+                At Red Salamander Security Operations, excellence is not just a promise; it is a standard we live by every day. We are committed to helping organizations feel safe, supported, and confident, knowing that their security is in capable and caring hands.
               </p>
             </div>
             <div>

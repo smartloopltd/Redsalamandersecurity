@@ -22,14 +22,14 @@ export default function Home() {
         <div className="mx-auto max-w-4xl space-y-8 bg-transparent p-0 text-slate-950">
           <p className="text-sm uppercase tracking-[0.35em] text-red-600">What we do</p>
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            Red Salamader Security delivers practical, mission-ready protection with proactive monitoring and rapid response.
+            Red Salamander Security Operations delivers practical, mission-ready protection with proactive monitoring and rapid response.
           </h2>
           <div className="max-w-3xl space-y-6 text-lg leading-8 text-slate-600">
             <p>
               We safeguard people and assets with continuous oversight, decisive action, and security services designed for complex organizations. Our team reduces exposure across digital and physical environments, responds quickly when risks emerge, and builds stronger controls that keep your operations running reliably.
             </p>
             <p>
-              At Red Salamader Security, care is more than a value—it is the way we serve. We bring calm, commitment, and genuine attention to every duty, protecting what matters most with respect, vigilance, and a deep sense of responsibility.
+              At Red Salamander Security Operations, care is more than a value—it is the way we serve. We bring calm, commitment, and genuine attention to every duty, protecting what matters most with respect, vigilance, and a deep sense of responsibility.
             </p>
           </div>
         </div>
