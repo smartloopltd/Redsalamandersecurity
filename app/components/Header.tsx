@@ -89,11 +89,11 @@ export default function Header() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 w-full bg-gradient-to-b from-red-600 via-red-700 to-red-800 text-white">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4 sm:px-8">
-        <Link href="/" onClick={closeAllPanels} className="inline-flex flex-col items-start gap-1 font-extrabold tracking-tight text-white">
+        <Link href="/" onClick={closeAllPanels} className="inline-flex flex-col items-start gap-0 font-extrabold tracking-tight text-white">
           <span className="block text-[0.78rem] sm:text-sm md:text-xl font-extrabold leading-tight tracking-tight uppercase text-white">
             Red Salamander
           </span>
-          <span className="block text-[0.6rem] sm:text-xs md:text-sm font-light tracking-[0.22em] uppercase text-red-200">
+          <span className="block -mt-1 text-[0.6rem] sm:text-xs md:text-sm font-light tracking-[0.22em] uppercase text-red-200">
             SECURITY
           </span>
         </Link>
