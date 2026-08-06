@@ -1,11 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { navLinks } from "./navLinks";
 
 export default function Footer() {
+  const pathname = usePathname();
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
+
+  const isActivePath = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const isGroupActive = (link: (typeof navLinks)[number]) =>
+    link.children?.some((child) => isActivePath(child.href)) ?? false;
+
+  useEffect(() => {
+    const activeGroup = navLinks.find((link) => isGroupActive(link));
+    if (activeGroup) {
+      setOpenGroups((prev) => ({ ...prev, [activeGroup.label]: true }));
+    }
+  }, [pathname]);
 
   function toggle(label: string) {
     setOpenGroups((prev) => ({ ...prev, [label]: !prev[label] }));
@@ -55,7 +68,8 @@ export default function Footer() {
                       type="button"
                       onClick={() => toggle(link.label)}
                       aria-expanded={!!openGroups[link.label]}
-                      className="flex w-full items-center justify-between text-left text-slate-200 font-semibold px-0 py-1 hover:text-white"
+                      aria-current={isGroupActive(link) ? "page" : undefined}
+                      className={`flex w-full items-center justify-between rounded-sm px-2 py-2 text-left font-semibold transition ${isGroupActive(link) ? "bg-white/15 text-white" : "text-slate-200 hover:bg-white/10 hover:text-white"}`}
                     >
                       <span>{link.label}</span>
                       <span className="transition duration-150">
@@ -69,7 +83,8 @@ export default function Footer() {
                           <Link
                             key={child.href + child.label}
                             href={child.href}
-                            className="block text-slate-200 hover:text-white text-sm"
+                            aria-current={isActivePath(child.href) ? "page" : undefined}
+                            className={`block rounded-sm px-2 py-1 text-sm transition ${isActivePath(child.href) ? "bg-white/15 font-semibold text-white" : "text-slate-200 hover:bg-white/10 hover:text-white"}`}
                             onClick={() => setOpenGroups({})}
                           >
                             {child.label}

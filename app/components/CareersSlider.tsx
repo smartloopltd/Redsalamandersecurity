@@ -19,10 +19,6 @@ const slides = [
     title: "Client Services",
     description: "Serving clients and managing stakeholder needs.",
   },
-  {
-    title: "Training & Development",
-    description: "Skills training, readiness, and safety coaching.",
-  },
 ];
 
 // duplicate slides for smooth continuous loop
@@ -99,10 +95,10 @@ export default function CareersSlider() {
             className="flex-none box-border px-2 py-2"
             style={slidePixelWidth ? { minWidth: `${slidePixelWidth}px` } : undefined}
           >
-            <div className="flex h-full max-h-[260px] min-h-[200px] flex-col justify-between bg-slate-950 p-4 text-white">
+            <div className="flex h-full min-h-[160px] flex-col justify-between rounded-3xl bg-slate-950/95 p-4 ring-1 ring-white/10 transition hover:-translate-y-1 hover:bg-slate-950">
               <div>
-                <p className="text-[0.625rem] uppercase tracking-[0.35em] text-red-400">Slide</p>
-                <h3 className="mt-2 text-base font-semibold text-white">{slide.title}</h3>
+                <p className="text-[0.625rem] uppercase tracking-[0.35em] text-red-400">Careers and employments</p>
+                <h3 className="mt-2 text-sm font-semibold text-white">{slide.title}</h3>
               </div>
               <p className="mt-3 text-sm leading-6 text-slate-300">{slide.description}</p>
             </div>

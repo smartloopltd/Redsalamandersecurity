@@ -2,15 +2,21 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navLinks } from "./navLinks";
 
 export default function Header() {
+  const pathname = usePathname();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [desktopOpenMenu, setDesktopOpenMenu] = useState<string | null>(null);
   const [mobileOpenMenu, setMobileOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const isActivePath = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const isGroupActive = (link: (typeof navLinks)[number]) =>
+    link.children?.some((child) => isActivePath(child.href)) ?? false;
 
   const suggestions = Array.from(
     new Set(
@@ -31,6 +37,17 @@ export default function Header() {
     setMobileSearchOpen(false);
     setMobileOpenMenu(null);
   }, []);
+
+  useEffect(() => {
+    const activeLink = navLinks.find((link) => isGroupActive(link));
+    if (activeLink) {
+      setDesktopOpenMenu(activeLink.label);
+      setMobileOpenMenu(activeLink.label);
+    } else {
+      setDesktopOpenMenu(null);
+      setMobileOpenMenu(null);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
@@ -150,7 +167,8 @@ export default function Header() {
                         type="button"
                         onClick={() => setDesktopOpenMenu((current) => (current === link.label ? null : link.label))}
                         aria-expanded={desktopOpenMenu === link.label}
-                        className="inline-flex items-center gap-1 transition hover:text-red-200"
+                        aria-current={isGroupActive(link) ? "page" : undefined}
+                        className={`inline-flex items-center gap-1 rounded-sm px-2 py-1 transition ${desktopOpenMenu === link.label || isGroupActive(link) ? "bg-white/10 text-white font-semibold shadow-sm shadow-white/10" : "text-white hover:text-red-200 hover:bg-white/10"}`}
                       >
                         {link.label}
                         <span className="text-xs">▾</span>
@@ -166,7 +184,8 @@ export default function Header() {
                             <Link
                               key={`${link.label}-${child.label}`}
                               href={child.href}
-                              className="block px-4 py-2.5 whitespace-nowrap text-sm text-slate-700 transition hover:bg-red-50 hover:text-red-700"
+                              aria-current={isActivePath(child.href) ? "page" : undefined}
+                              className={`block px-4 py-2.5 whitespace-nowrap text-sm transition ${isActivePath(child.href) ? "bg-red-50 font-semibold text-red-700" : "text-slate-700 hover:bg-red-50 hover:text-red-700"}`}
                               onClick={() => setDesktopOpenMenu(null)}
                             >
                               {child.label}
@@ -249,7 +268,8 @@ export default function Header() {
                     <button
                       type="button"
                       onClick={() => setMobileOpenMenu((current) => (current === link.label ? null : link.label))}
-                      className="flex w-full items-center justify-between text-left text-sm font-semibold text-white transition hover:text-red-200"
+                      aria-current={isGroupActive(link) ? "page" : undefined}
+                      className={`flex w-full items-center justify-between rounded-sm px-2 py-2 text-left text-sm font-semibold transition ${isGroupActive(link) ? "bg-white/15 text-white" : "text-white hover:bg-white/10 hover:text-red-200"}`}
                     >
                       {link.label}
                       <span className="text-xs">{mobileOpenMenu === link.label ? "▴" : "▾"}</span>
@@ -260,7 +280,8 @@ export default function Header() {
                           <Link
                             key={`${link.label}-${child.label}`}
                             href={child.href}
-                            className="block rounded-lg px-3 py-2 text-sm text-slate-100 transition hover:bg-red-600"
+                            aria-current={isActivePath(child.href) ? "page" : undefined}
+                            className={`block rounded-lg px-3 py-2 text-sm transition ${isActivePath(child.href) ? "bg-white/15 font-semibold text-white" : "text-slate-100 hover:bg-red-600"}`}
                             onClick={() => {
                               setMobileOpen(false);
                               setMobileOpenMenu(null);
