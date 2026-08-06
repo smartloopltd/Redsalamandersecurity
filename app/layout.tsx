@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Red Salamader Security",
+  title: "Red Salamander Security Operations",
   description: "A security services website offering threat detection, incident response, and managed protection.",
 };
 

@@ -44,31 +44,28 @@ export default function Home() {
           <ul className="max-w-3xl space-y-5 text-lg leading-8 text-slate-600 p-0">
             <li className="flex items-start gap-4">
               <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-red-600"></span>
-              <span>Leadership teams and security operations groups seeking steady oversight, faster response, and clear operational control.</span>
+              <span>Private citizens and residential clients who need secure homes and personal safety.</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-red-600"></span>
-              <span>Businesses protecting critical facilities, digital systems, and sensitive infrastructure across corporate campuses and remote sites.</span>
+              <span>Commercial properties, malls, retail centers, and logistics hubs requiring controlled access and consistent asset protection.</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-red-600"></span>
-              <span>Regulated organizations needing practical compliance support, vendor management, and consistent policy execution.</span>
+              <span>Construction sites, manufacturing plants, oil & gas, ports, and industrial facilities needing practical site security and steady operations.</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-red-600"></span>
-              <span>Facilities and executive protection teams requiring secure access, crowd management, and on-site incident coordination.</span>
+              <span>Data centers, financial institutions, healthcare, higher education, and government missions that demand compliance, continuity, and trusted oversight.</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-red-600"></span>
-              <span>Enterprises that want aligned protection across physical, operational, and information environments.</span>
+              <span>International organizations and transportation networks that depend on coordinated protection across complex environments.</span>
             </li>
           </ul>
           <div className="max-w-3xl space-y-6 text-lg leading-8 text-slate-600">
             <p>
-              Every client deserves protection that feels both dependable and personal. We build confidence by combining sharp operational discipline with a human approach that respects the pressure behind every decision.
-            </p>
-            <p>
-              Whether the need is urgent, complex, or ongoing, our work is guided by care, consistency, and the belief that strong security should create peace of mind, not just control.
+              Every client deserves protection that feels dependable and personal. We deliver disciplined security with a human approach so strong protection creates peace of mind, not just control.
             </p>
           </div>
         </div>

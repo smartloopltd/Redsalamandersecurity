@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { navLinks } from "./navLinks";
 
 export default function Footer() {
@@ -12,13 +12,6 @@ export default function Footer() {
   const isActivePath = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   const isGroupActive = (link: (typeof navLinks)[number]) =>
     link.children?.some((child) => isActivePath(child.href)) ?? false;
-
-  useEffect(() => {
-    const activeGroup = navLinks.find((link) => isGroupActive(link));
-    if (activeGroup) {
-      setOpenGroups((prev) => ({ ...prev, [activeGroup.label]: true }));
-    }
-  }, [pathname]);
 
   function toggle(label: string) {
     setOpenGroups((prev) => ({ ...prev, [label]: !prev[label] }));
@@ -38,7 +31,7 @@ export default function Footer() {
               Red Salamander
             </span>
             <span className="block -mt-1 text-[0.6rem] sm:text-xs md:text-sm font-light tracking-[0.22em] uppercase text-white">
-              SECURITY
+              SECURITY OPERATIONS
             </span>
           </Link>
           <p className="max-w-md text-sm leading-5 text-slate-200">
@@ -51,7 +44,7 @@ export default function Footer() {
               <span className="mt-1 block text-[0.62rem] font-light tracking-[0.24em] sm:text-[0.68rem] md:text-[0.8rem]">Limited</span>
             </span>
           </p>
-          <p className="text-sm leading-5 text-red-100">© 2026 Red Salamander Security. Trusted protection for modern enterprises.</p>
+          <p className="text-sm leading-5 text-red-100">© 2026 Red Salamander Security Operations. Trusted protection for modern enterprises.</p>
         </div>
 
         <div className="space-y-3 border-b border-white/15 pb-6 md:border-b-0 md:border-r md:border-white/15 md:pr-8">

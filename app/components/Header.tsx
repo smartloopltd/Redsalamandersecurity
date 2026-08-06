@@ -76,14 +76,9 @@ export default function Header() {
           Red Salamander
         </span>
         <span className="block -mt-1 text-[0.6rem] font-light tracking-[0.22em] uppercase text-white">
-          SECURITY
+          SECURITY OPERATIONS
         </span>
       </Link>
-
-      <p className="max-w-md text-sm leading-5 text-slate-200">
-        <span className="block">Dependable protection</span>
-        <span className="block">and calm operations</span>
-      </p>
 
       <div className="text-sm leading-5 text-slate-200">
         Digital Solutions by
@@ -111,7 +106,7 @@ export default function Header() {
             Red Salamander
           </span>
           <span className="block -mt-1 text-[0.6rem] sm:text-xs md:text-sm font-light tracking-[0.22em] uppercase text-red-200">
-            SECURITY
+            SECURITY OPERATIONS
           </span>
         </Link>
 
