@@ -1,0 +1,249 @@
+
+=== MONITOR START 2026-08-14T15:04:07.403Z PID=4776 ===
+$ next dev
+⚠ Port 3000 is in use by process 16960, using available port 3001 instead.
+▲ Next.js 16.2.11 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://10.204.127.116:3001
+✓ Ready in 1915ms
+⨯ Another next dev server is already running.
+
+- Local:        http://localhost:3000
+- PID:          16960
+- Dir:          C:\Users\DELL\Downloads\red-salamader
+- Log:          .next\dev\logs\next-development.log
+
+Run taskkill /PID 16960 /F to stop it.
+[?25h
+[ELIFECYCLE] Command failed with exit code 1.
+
+=== PROCESS EXIT PID=4776 code=1 signal=null 2026-08-14T15:04:15.789Z ===
+
+=== MONITOR START 2026-08-14T15:21:40.534Z PID=23480 ===
+$ next dev
+⚠ Port 3000 is in use by process 9656, using available port 3001 instead.
+▲ Next.js 16.2.11 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://10.204.127.116:3001
+✓ Ready in 1051ms
+⨯ Another next dev server is already running.
+
+- Local:        http://localhost:3000
+- PID:          9656
+- Dir:          C:\Users\DELL\Downloads\red-salamader
+- Log:          .next\dev\logs\next-development.log
+
+Run taskkill /PID 9656 /F to stop it.
+[?25h
+[ELIFECYCLE] Command failed with exit code 1.
+
+=== PROCESS EXIT PID=23480 code=1 signal=null 2026-08-14T15:21:45.453Z ===
+
+=== MONITOR START 2026-08-14T15:22:24.223Z PID=14548 ===
+$ next dev
+⚠ Port 3000 is in use by process 9656, using available port 3001 instead.
+▲ Next.js 16.2.11 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://10.204.127.116:3001
+✓ Ready in 1006ms
+⨯ Another next dev server is already running.
+
+- Local:        http://localhost:3000
+- PID:          9656
+- Dir:          C:\Users\DELL\Downloads\red-salamader
+- Log:          .next\dev\logs\next-development.log
+
+Run taskkill /PID 9656 /F to stop it.
+[?25h
+[ELIFECYCLE] Command failed with exit code 1.
+
+=== PROCESS EXIT PID=14548 code=1 signal=null 2026-08-14T15:22:28.583Z ===
+
+=== MONITOR START 2026-08-14T15:23:48.258Z PID=15876 ===
+$ next dev
+▲ Next.js 16.2.11 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.204.127.116:3000
+✓ Ready in 903ms
+
+ GET /services/agribusiness 200 in 868ms (next.js: 360ms, application-code: 508ms)
+ GET /services/real-estate 200 in 305ms (next.js: 111ms, application-code: 194ms)
+[browser] Image with src "/_next/static/media/agrochemicals_1.200i_805pezw9.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[browser] Image with src "/_next/static/media/agrochemicals_img3.18ugfsg1hozfg.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+ GET /services/agribusiness 200 in 126ms (next.js: 16ms, application-code: 111ms)
+ GET / 200 in 136ms (next.js: 66ms, application-code: 70ms)
+ GET /services/agribusiness 200 in 44ms (next.js: 8ms, application-code: 36ms)
+ GET /services/operations 200 in 123ms (next.js: 72ms, application-code: 51ms)
+ GET /services/real-estate 200 in 32ms (next.js: 4ms, application-code: 28ms)
+ GET /services/construction 200 in 121ms (next.js: 67ms, application-code: 55ms)
+ GET /services/staff-vetting 200 in 118ms (next.js: 71ms, application-code: 48ms)
+[browser] Image with src "/_next/static/media/realestate_and_propertymanagement3.3un7umjoqahjk.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+ GET /services/construction 200 in 46ms (next.js: 7ms, application-code: 39ms)
+ GET /services/escorts 200 in 134ms (next.js: 73ms, application-code: 61ms)
+ GET /services/executive-travel 200 in 104ms (next.js: 64ms, application-code: 39ms)
+ GET /services/agribusiness 200 in 38ms (next.js: 6ms, application-code: 32ms)
+ GET /about 200 in 1827ms (next.js: 1784ms, application-code: 43ms)
+ GET /who-we-are 200 in 1405ms (next.js: 1261ms, application-code: 144ms)
+ GET /who-we-are 200 in 94ms (next.js: 21ms, application-code: 73ms)
+[browser] Image with src "/_next/static/media/about_hero_section.0v_evty6lp-ak.jpg" has "fill" prop and "sizes" prop of "100vw", but image is not rendered at full viewport width. Please adjust "sizes" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /contact 200 in 1411ms (next.js: 1360ms, application-code: 51ms)
+ GET / 200 in 45ms (next.js: 5ms, application-code: 39ms)
+ GET /services/real-estate 200 in 52ms (next.js: 5ms, application-code: 47ms)
+ GET /services/real-estate 200 in 2.2s (next.js: 877ms, application-code: 1312ms)
+ GET /services/construction 200 in 2.1s (next.js: 1184ms, application-code: 940ms)
+ GET /services/real-estate 200 in 686ms (next.js: 101ms, application-code: 585ms)
+ GET /services/construction 200 in 555ms (next.js: 28ms, application-code: 527ms)
+ GET /services/real-estate 200 in 515ms (next.js: 17ms, application-code: 498ms)
+ GET /services/real-estate 200 in 515ms (next.js: 52ms, application-code: 462ms)
+ GET /services/real-estate 200 in 516ms (next.js: 87ms, application-code: 428ms)
+ GET /services/real-estate 200 in 518ms (next.js: 127ms, application-code: 391ms)
+ GET /services/construction 200 in 524ms (next.js: 175ms, application-code: 349ms)
+ GET /services/construction 200 in 523ms (next.js: 208ms, application-code: 315ms)
+ GET /services/construction 200 in 523ms (next.js: 245ms, application-code: 278ms)
+ GET /services/construction 200 in 402ms (next.js: 136ms, application-code: 265ms)
+ GET /services/real-estate 200 in 548ms (next.js: 8ms, application-code: 540ms)
+ GET /services/construction 200 in 551ms (next.js: 60ms, application-code: 491ms)
+ GET /services/real-estate 200 in 508ms (next.js: 11ms, application-code: 497ms)
+ GET /services/construction 200 in 500ms (next.js: 16ms, application-code: 485ms)
+ GET /services/real-estate 200 in 455ms (next.js: 12ms, application-code: 443ms)
+ GET /services/real-estate 200 in 456ms (next.js: 51ms, application-code: 405ms)
+ GET /services/real-estate 200 in 458ms (next.js: 85ms, application-code: 372ms)
+ GET /services/real-estate 200 in 509ms (next.js: 131ms, application-code: 378ms)
+ GET /services/construction 200 in 435ms (next.js: 46ms, application-code: 389ms)
+ GET /services/construction 200 in 434ms (next.js: 117ms, application-code: 317ms)
+ GET /services/construction 200 in 436ms (next.js: 83ms, application-code: 354ms)
+ GET /services/construction 200 in 402ms (next.js: 126ms, application-code: 276ms)
+ GET /services/real-estate 200 in 608ms (next.js: 10ms, application-code: 598ms)
+ GET /services/construction 200 in 568ms (next.js: 7ms, application-code: 561ms)
+ GET /services/real-estate 200 in 564ms (next.js: 15ms, application-code: 549ms)
+ GET /services/construction 200 in 509ms (next.js: 19ms, application-code: 490ms)
+ GET /services/real-estate 200 in 543ms (next.js: 14ms, application-code: 529ms)
+ GET /services/real-estate 200 in 543ms (next.js: 52ms, application-code: 491ms)
+ GET /services/real-estate 200 in 543ms (next.js: 91ms, application-code: 452ms)
+ GET /services/real-estate 200 in 545ms (next.js: 140ms, application-code: 406ms)
+ GET /services/construction 200 in 452ms (next.js: 59ms, application-code: 393ms)
+ GET /services/construction 200 in 450ms (next.js: 101ms, application-code: 349ms)
+ GET /services/construction 200 in 404ms (next.js: 103ms, application-code: 302ms)
+ GET /services/construction 200 in 403ms (next.js: 139ms, application-code: 265ms)
+ GET /services/real-estate 200 in 567ms (next.js: 9ms, application-code: 558ms)
+ GET /services/construction 200 in 532ms (next.js: 9ms, application-code: 522ms)
+ GET /services/real-estate 200 in 482ms (next.js: 10ms, application-code: 472ms)
+ GET /services/construction 200 in 485ms (next.js: 11ms, application-code: 474ms)
+ GET /services/real-estate 200 in 500ms (next.js: 19ms, application-code: 481ms)
+ GET /services/real-estate 200 in 558ms (next.js: 64ms, application-code: 494ms)
+ GET /services/real-estate 200 in 559ms (next.js: 109ms, application-code: 449ms)
+ GET /services/real-estate 200 in 505ms (next.js: 106ms, application-code: 399ms)
+ GET /services/construction 200 in 464ms (next.js: 48ms, application-code: 416ms)
+ GET /services/construction 200 in 464ms (next.js: 121ms, application-code: 343ms)
+ GET /services/construction 200 in 467ms (next.js: 85ms, application-code: 382ms)
+ GET /services/construction 200 in 499ms (next.js: 133ms, application-code: 366ms)
+ GET /services/real-estate 200 in 599ms (next.js: 9ms, application-code: 591ms)
+ GET /services/construction 200 in 597ms (next.js: 14ms, application-code: 584ms)
+ GET /services/real-estate 200 in 592ms (next.js: 61ms, application-code: 531ms)
+ GET /services/construction 200 in 520ms (next.js: 13ms, application-code: 507ms)
+ GET /services/real-estate 200 in 498ms (next.js: 27ms, application-code: 471ms)
+ GET /services/real-estate 200 in 495ms (next.js: 73ms, application-code: 423ms)
+ GET /services/real-estate 200 in 495ms (next.js: 124ms, application-code: 372ms)
+ GET /services/real-estate 200 in 476ms (next.js: 110ms, application-code: 366ms)
+ GET /services/construction 200 in 420ms (next.js: 105ms, application-code: 315ms)
+ GET /services/construction 200 in 422ms (next.js: 66ms, application-code: 356ms)
+ GET /services/construction 200 in 422ms (next.js: 143ms, application-code: 278ms)
+ GET /services/construction 200 in 380ms (next.js: 9ms, application-code: 371ms)
+ GET /services/real-estate 200 in 503ms (next.js: 9ms, application-code: 494ms)
+ GET /services/construction 200 in 506ms (next.js: 10ms, application-code: 496ms)
+ GET /services/real-estate 200 in 471ms (next.js: 11ms, application-code: 460ms)
+ GET /services/construction 200 in 510ms (next.js: 51ms, application-code: 460ms)
+ GET /services/real-estate 200 in 475ms (next.js: 15ms, application-code: 460ms)
+ GET /services/real-estate 200 in 483ms (next.js: 90ms, application-code: 393ms)
+ GET /services/real-estate 200 in 485ms (next.js: 57ms, application-code: 428ms)
+ GET /services/real-estate 200 in 434ms (next.js: 8ms, application-code: 425ms)
+ GET /services/construction 200 in 433ms (next.js: 51ms, application-code: 382ms)
+ GET /services/construction 200 in 433ms (next.js: 91ms, application-code: 342ms)
+ GET /services/construction 200 in 434ms (next.js: 129ms, application-code: 305ms)
+ GET /services/construction 200 in 432ms (next.js: 138ms, application-code: 295ms)
+ GET /services/real-estate 200 in 533ms (next.js: 9ms, application-code: 524ms)
+ GET /services/construction 200 in 491ms (next.js: 7ms, application-code: 484ms)
+ GET /services/real-estate 200 in 445ms (next.js: 22ms, application-code: 423ms)
+ GET /services/construction 200 in 433ms (next.js: 47ms, application-code: 386ms)
+ GET /services/real-estate 200 in 442ms (next.js: 15ms, application-code: 427ms)
+ GET /services/real-estate 200 in 443ms (next.js: 47ms, application-code: 397ms)
+ GET /services/real-estate 200 in 444ms (next.js: 87ms, application-code: 357ms)
+ GET /services/real-estate 200 in 427ms (next.js: 10ms, application-code: 417ms)
+ GET /services/construction 200 in 428ms (next.js: 48ms, application-code: 380ms)
+ GET /services/construction 200 in 432ms (next.js: 85ms, application-code: 347ms)
+ GET /services/construction 200 in 432ms (next.js: 118ms, application-code: 313ms)
+ GET /services/construction 200 in 483ms (next.js: 85ms, application-code: 398ms)
+ GET /services/real-estate 200 in 571ms (next.js: 14ms, application-code: 557ms)
+ GET /services/construction 200 in 524ms (next.js: 8ms, application-code: 516ms)
+ GET /services/real-estate 200 in 482ms (next.js: 17ms, application-code: 465ms)
+ GET /services/construction 200 in 477ms (next.js: 55ms, application-code: 423ms)
+ GET /services/real-estate 200 in 415ms (next.js: 11ms, application-code: 404ms)
+ GET /services/real-estate 200 in 449ms (next.js: 48ms, application-code: 401ms)
+ GET /services/real-estate 200 in 450ms (next.js: 90ms, application-code: 360ms)
+ GET /services/real-estate 200 in 407ms (next.js: 22ms, application-code: 384ms)
+ GET /services/construction 200 in 409ms (next.js: 66ms, application-code: 343ms)
+ GET /services/construction 200 in 401ms (next.js: 86ms, application-code: 314ms)
+ GET /services/construction 200 in 402ms (next.js: 123ms, application-code: 279ms)
+ GET /services/construction 200 in 576ms (next.js: 6ms, application-code: 570ms)
+ GET /services/real-estate 200 in 968ms (next.js: 10ms, application-code: 958ms)
+ GET /services/construction 200 in 931ms (next.js: 12ms, application-code: 918ms)
+ GET /services/real-estate 200 in 929ms (next.js: 46ms, application-code: 883ms)
+ GET /services/construction 200 in 898ms (next.js: 45ms, application-code: 854ms)
+ GET /services/real-estate 200 in 885ms (next.js: 23ms, application-code: 861ms)
+ GET /services/real-estate 200 in 885ms (next.js: 113ms, application-code: 772ms)
+ GET /services/real-estate 200 in 936ms (next.js: 244ms, application-code: 692ms)
+ GET /services/construction 200 in 663ms (next.js: 73ms, application-code: 590ms)
+ GET /services/real-estate 200 in 781ms (next.js: 134ms, application-code: 648ms)
+ GET /services/construction 200 in 677ms (next.js: 101ms, application-code: 576ms)
+ GET /services/construction 200 in 679ms (next.js: 17ms, application-code: 663ms)
+ GET /services/construction 200 in 680ms (next.js: 209ms, application-code: 471ms)
+ GET /services/real-estate 200 in 636ms (next.js: 18ms, application-code: 618ms)
+ GET /services/construction 200 in 571ms (next.js: 16ms, application-code: 555ms)
+ GET /services/real-estate 200 in 565ms (next.js: 62ms, application-code: 503ms)
+ GET /services/construction 200 in 557ms (next.js: 71ms, application-code: 487ms)
+ GET /services/real-estate 200 in 497ms (next.js: 63ms, application-code: 434ms)
+ GET /services/real-estate 200 in 445ms (next.js: 51ms, application-code: 394ms)
+ GET /services/real-estate 200 in 402ms (next.js: 17ms, application-code: 385ms)
+ GET /services/real-estate 200 in 437ms (next.js: 93ms, application-code: 345ms)
+ GET /services/construction 200 in 440ms (next.js: 53ms, application-code: 387ms)
+ GET /services/construction 200 in 500ms (next.js: 106ms, application-code: 394ms)
+ GET /services/construction 200 in 475ms (next.js: 52ms, application-code: 422ms)
+ GET /services/construction 200 in 468ms (next.js: 47ms, application-code: 420ms)
+ GET /services/real-estate 200 in 618ms (next.js: 8ms, application-code: 610ms)
+ GET /services/construction 200 in 571ms (next.js: 13ms, application-code: 558ms)
+ GET /services/real-estate 200 in 569ms (next.js: 53ms, application-code: 516ms)
+ GET /services/construction 200 in 576ms (next.js: 55ms, application-code: 520ms)
+ GET /services/real-estate 200 in 575ms (next.js: 106ms, application-code: 469ms)
+ GET /services/real-estate 200 in 537ms (next.js: 114ms, application-code: 422ms)
+ GET /services/real-estate 200 in 369ms (next.js: 7ms, application-code: 361ms)
+ GET /services/real-estate 200 in 431ms (next.js: 14ms, application-code: 417ms)
+ GET /services/construction 200 in 431ms (next.js: 49ms, application-code: 382ms)
+ GET /services/construction 200 in 507ms (next.js: 83ms, application-code: 424ms)
+ GET /services/construction 200 in 432ms (next.js: 59ms, application-code: 373ms)
+ GET /services/construction 200 in 429ms (next.js: 10ms, application-code: 419ms)
+ GET /services/real-estate 200 in 575ms (next.js: 13ms, application-code: 562ms)
+ GET /services/construction 200 in 574ms (next.js: 15ms, application-code: 559ms)
+ GET /services/real-estate 200 in 629ms (next.js: 63ms, application-code: 566ms)
+ GET /services/real-estate 200 in 577ms (next.js: 98ms, application-code: 479ms)
+ GET /services/construction 200 in 579ms (next.js: 56ms, application-code: 523ms)
+ GET /services/real-estate 200 in 531ms (next.js: 94ms, application-code: 437ms)
+ GET /services/real-estate 200 in 450ms (next.js: 53ms, application-code: 398ms)
+ GET /services/construction 200 in 413ms (next.js: 55ms, application-code: 358ms)
+ GET /services/real-estate 200 in 414ms (next.js: 16ms, application-code: 399ms)
+ GET /services/construction 200 in 522ms (next.js: 137ms, application-code: 385ms)
+ GET /services/construction 200 in 525ms (next.js: 96ms, application-code: 430ms)
+ GET /services/construction 200 in 327ms (next.js: 9ms, application-code: 318ms)
+ GET /services/real-estate 200 in 308ms (next.js: 24ms, application-code: 284ms)
+ GET /services/construction 200 in 241ms (next.js: 15ms, application-code: 226ms)
+ GET /services/real-estate 200 in 184ms (next.js: 43ms, application-code: 141ms)
+ GET /services/real-estate 200 in 187ms (next.js: 8ms, application-code: 179ms)
+ GET /services/construction 200 in 188ms (next.js: 85ms, application-code: 103ms)
+ GET /services/construction 200 in 66ms (next.js: 11ms, application-code: 55ms)
+ GET /services/construction 200 in 45ms (next.js: 8ms, application-code: 37ms)
+ GET /services/escorts 200 in 64ms (next.js: 26ms, application-code: 39ms)
+ GET /services/real-estate 200 in 38ms (next.js: 4ms, application-code: 34ms)
+ GET /services/agribusiness 200 in 62ms (next.js: 24ms, application-code: 38ms)
+ GET /services/operations 200 in 73ms (next.js: 32ms, application-code: 41ms)

@@ -14,10 +14,11 @@ export const navLinks = [
     children: [
       { label: "Executive Travel Security", href: "/services/executive-travel" },
       { label: "Escorts", href: "/services/escorts" },
-      { label: "Staff Vetting", href: "/services/staff-vetting" },
-      { label: "Construction", href: "/services/construction" },
-      { label: "Operations / Logistics", href: "/services/operations" },
-      { label: "Agribusiness & Hospitality", href: "/services/agribusiness" },
+      { label: "Staff Vetting and Training", href: "/services/staff-vetting" },
+      { label: "Construction and Maintenance", href: "/services/construction" },
+      { label: "Real Estate and Property Management", href: "/services/real-estate" },
+      { label: "Logistics and Operations", href: "/services/operations" },
+      { label: "Agribusiness and Hospitality", href: "/services/agribusiness" },
     ],
   },
   {
@@ -46,7 +47,7 @@ export const navLinks = [
     label: "Join Us",
     href: "#",
     children: [
-      { label: "Working at Red Salamander Security", href: "/features" },
+      { label: "Working at Red Salamander Security Operations", href: "/features" },
       { label: "Careers and Employment", href: "/careers-and-employment" },
     ],
   },

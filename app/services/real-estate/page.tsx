@@ -3,38 +3,38 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import img1 from "../../img/what we do imgs/construction_image1.jpg";
-import img2 from "../../img/what we do imgs/construction_image2.jpg";
-import img3 from "../../img/what we do imgs/construction_image3.jpg";
+import img1 from "../../img/what we do imgs/realestate_and_property_management1.jpg";
+import img2 from "../../img/what we do imgs/realestate_and_propertymanagement2.jpg";
+import img3 from "../../img/what we do imgs/realestate_and_propertymanagement3.jpg";
 
-export default function ConstructionPage() {
+export default function RealEstatePage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
-      <section className="relative w-full overflow-hidden bg-red-600 text-white">
+      <section className="relative w-full overflow-hidden bg-slate-900 text-white">
         <div className="relative isolate aspect-[16/9] min-h-[420px] w-full overflow-hidden lg:min-h-[580px]">
           <SliderImages />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
           <div className="relative z-20 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 py-14 text-center sm:px-8 sm:text-left">
-            <p className="text-sm uppercase tracking-[0.35em] text-red-200">What we do</p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">Construction and Maintenance</h1>
-            <p className="mt-4 max-w-3xl text-lg leading-8 text-white/80">Operational oversight, site security, and maintenance services that ensure project continuity and asset longevity.</p>
-            <div id="construction-slider-dots" className="mt-4 flex gap-2 justify-center sm:justify-start"></div>
+            <p className="text-sm uppercase tracking-[0.35em] text-slate-200">What we do</p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">Real Estate & Property Management</h1>
+            <p className="mt-4 max-w-3xl text-lg leading-8 text-white/80">Practical property management and real estate solutions that protect asset value, reduce vacancy, and deliver reliable tenant service.</p>
+            <div id="realestate-slider-dots" className="mt-4 flex gap-2 justify-center sm:justify-start"></div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-16 sm:px-8 lg:px-12">
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold text-slate-950">End-to-end construction and maintenance support</h2>
+          <h2 className="text-xl font-semibold text-slate-950">Property management focused on performance</h2>
           <p className="max-w-3xl text-lg leading-8 text-slate-700">
-            We provide site security, access control, maintenance coordination, and logistics management tailored to each project's scale. Our teams reduce downtime, protect assets, and keep projects on schedule through proactive planning and responsive on-site support.
+            From tenant relations and lease administration to maintenance and security, we deliver practical services that protect your investment and create dependable occupancy. We coordinate vendors, oversee repairs, and provide regular reporting to keep stakeholders informed.
           </p>
           <ul className="list-disc pl-5 text-slate-700">
-            <li>Site security & access management</li>
-            <li>Planned and reactive maintenance coordination</li>
-            <li>Materials logistics and workforce coordination</li>
-            <li>Emergency response and incident support</li>
+            <li>Tenant liaison and lease administration</li>
+            <li>Preventive and reactive maintenance management</li>
+            <li>Security planning and access control</li>
+            <li>Vendor management and cost control</li>
           </ul>
         </div>
 
@@ -57,7 +57,7 @@ function SliderImages() {
   }, []);
 
   useEffect(() => {
-    const dots = document.getElementById('construction-slider-dots');
+    const dots = document.getElementById('realestate-slider-dots');
     if (!dots) return;
     dots.innerHTML = '';
     images.forEach((_, i) => {
@@ -72,7 +72,7 @@ function SliderImages() {
     <>
       {images.map((src, i) => (
         <div key={i} className={`absolute inset-0 transition-opacity duration-700 ${i === index ? 'opacity-100 z-10' : 'opacity-0 -z-10'}`}>
-          <Image src={src} alt={`Construction ${i + 1}`} fill sizes="100vw" loading={i === 0 ? 'eager' : 'lazy'} priority={i === 0} className="object-cover" />
+          <Image src={src} alt={`Real estate ${i + 1}`} fill sizes="100vw" loading={i === 0 ? 'eager' : 'lazy'} priority={i === 0} className="object-cover" />
         </div>
       ))}
     </>

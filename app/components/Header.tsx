@@ -1,11 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navLinks } from "./navLinks";
 
-export default function Header() {
+export default function Header () {
   const pathname = usePathname();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [desktopOpenMenu, setDesktopOpenMenu] = useState<string | null>(null);
@@ -93,24 +94,28 @@ export default function Header() {
       </div>
 
       <p className="text-sm leading-5 text-red-100">
-        © 2026 Red Salamander Security. Trusted protection for modern enterprises.
+        © 2026 Red Salamander Security Operations. Trusted protection for modern enterprises.
       </p>
     </div>
   );
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 w-full bg-gradient-to-b from-red-600 via-red-700 to-red-800 text-white">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4 sm:px-8">
-        <Link href="/" onClick={closeAllPanels} className="inline-flex flex-col items-start gap-0 font-extrabold tracking-tight text-white">
+      <div className="mx-auto flex max-w-7xl flex-nowrap min-w-0 items-center justify-between gap-4 px-6 py-4 sm:px-8">
+        <Link
+          href="/"
+          onClick={closeAllPanels}
+          className="inline-flex flex-col items-start gap-0 font-extrabold tracking-tight text-white shrink-0"
+        >
           <span className="block text-[0.78rem] sm:text-sm md:text-xl font-extrabold leading-tight tracking-tight uppercase text-white">
             Red Salamander
           </span>
-          <span className="block -mt-1 text-[0.6rem] sm:text-xs md:text-sm font-light tracking-[0.22em] uppercase text-red-200">
+          <span className="block -mt-1 text-[0.6rem] sm:text-xs md:text-sm font-light tracking-[0.22em] uppercase text-white">
             SECURITY OPERATIONS
           </span>
         </Link>
 
-        <div className="flex items-center gap-1 lg:gap-2">
+        <div className="flex items-center gap-1 lg:gap-2 shrink-0">
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-white text-red-700 transition hover:bg-slate-100"
