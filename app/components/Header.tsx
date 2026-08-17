@@ -14,6 +14,8 @@ export default function Header () {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [dropdownPos, setDropdownPos] = useState<{ left: number; width: number } | null>(null);
+  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
   const isActivePath = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   const isGroupActive = (link: (typeof navLinks)[number]) =>
@@ -100,8 +102,8 @@ export default function Header () {
   );
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 w-full bg-gradient-to-b from-red-600 via-red-700 to-red-800 text-white">
-      <div className="mx-auto flex max-w-7xl flex-nowrap min-w-0 items-center justify-between gap-4 px-6 py-4 sm:px-8">
+    <header className="fixed left-0 right-0 top-0 z-50 w-full bg-gradient-to-b from-red-600 via-red-700 to-red-800 text-white h-16">
+      <div className="mx-auto flex max-w-7xl flex-nowrap min-w-0 items-center justify-between gap-4 px-6 sm:px-8 h-full">
         <Link
           href="/"
           onClick={closeAllPanels}
@@ -155,17 +157,31 @@ export default function Header () {
             </svg>
           </button>
 
-          <nav ref={navRef} className="hidden items-center gap-3 text-sm font-medium text-white lg:flex">
+          <nav ref={navRef} className="hidden items-center gap-3 text-sm font-medium text-white lg:flex h-full">
             {navLinks.map((link, index) => {
               const alignRight = index >= navLinks.length - 2;
 
               return (
-                <div key={link.label} className="relative">
+                <div key={link.label} className="h-full flex items-center relative">
                   {link.children ? (
                     <>
                       <button
+                        ref={(el) => {
+                          if (el) buttonRefs.current[link.label] = el;
+                        }}
                         type="button"
-                        onClick={() => setDesktopOpenMenu((current) => (current === link.label ? null : link.label))}
+                        onClick={() => {
+                          const isOpening = desktopOpenMenu !== link.label;
+                          setDesktopOpenMenu((current) => (current === link.label ? null : link.label));
+                          
+                          if (isOpening && buttonRefs.current[link.label]) {
+                            const rect = buttonRefs.current[link.label]!.getBoundingClientRect();
+                            setDropdownPos({
+                              left: rect.left,
+                              width: rect.width
+                            });
+                          }
+                        }}
                         aria-expanded={desktopOpenMenu === link.label}
                         aria-current={isGroupActive(link) ? "page" : undefined}
                         className={`inline-flex items-center gap-1 rounded-sm px-2 py-1 transition ${desktopOpenMenu === link.label || isGroupActive(link) ? "bg-white/10 text-white font-semibold shadow-sm shadow-white/10" : "text-white hover:text-red-200 hover:bg-white/10"}`}
@@ -175,9 +191,12 @@ export default function Header () {
                       </button>
 
                       <div
-                        className={`absolute top-full z-50 mt-2 w-max min-w-[220px] max-w-[calc(100vw-2rem)] whitespace-nowrap overflow-hidden rounded-none border border-slate-900/10 bg-white text-slate-950 shadow-lg transition duration-150 ${
-                          alignRight ? "right-0 left-auto" : "left-0"
-                        } ${desktopOpenMenu === link.label ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                        className={`fixed top-16 z-50 mt-0 w-max min-w-[220px] max-w-[calc(100vw-2rem)] whitespace-nowrap overflow-hidden rounded-none border border-slate-900/10 bg-white text-slate-950 shadow-lg transition duration-150 ${
+                          desktopOpenMenu === link.label ? "opacity-100 visible" : "opacity-0 invisible"
+                        }`}
+                        style={{
+                          left: dropdownPos ? `${dropdownPos.left}px` : undefined,
+                        }}
                       >
                         <div className="space-y-1 p-2 max-h-[70vh] overflow-y-auto">
                           {link.children.map((child) => (
@@ -206,7 +225,7 @@ export default function Header () {
         </div>
       </div>
 
-      <div className={`fixed inset-x-0 top-[4.5rem] bottom-0 z-40 flex flex-col bg-red-700/95 transform transition-transform duration-300 ease-out ${mobileSearchOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
+      <div className={`fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col bg-red-700/95 transform transition-transform duration-300 ease-out ${mobileSearchOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
         <div className="flex-1 overflow-y-auto px-6 py-6">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2 rounded-md border border-white/15 bg-white px-3 py-2">
@@ -258,7 +277,7 @@ export default function Header () {
         </div>
       </div>
 
-      <div className={`fixed inset-x-0 top-[4.5rem] bottom-0 z-40 flex flex-col bg-red-700/95 lg:hidden transform transition-transform duration-300 ease-out ${mobileOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
+      <div className={`fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col bg-red-700/95 lg:hidden transform transition-transform duration-300 ease-out ${mobileOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
         <div className="flex-1 overflow-y-auto px-6 pb-6 pt-2">
           <div className="space-y-3">
             {navLinks.map((link) => (

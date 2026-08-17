@@ -2,21 +2,27 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import hero0 from "../img/hero.jpg";
-import hero1 from "../img/hero2.jpg";
-import hero2 from "../img/hero3.jpg";
-import hero3 from "../img/53df16772bcc91e35ffde77571a5ca3d.jpg";
-import hero4 from "../img/d209d97f3f9f6b700635816c8ad5e028.jpg";
+import staffVetting1 from "../img/what we do imgs/staff_vetting&training1.jpg";
+import staffVetting2 from "../img/what we do imgs/staff_vetting&training2.jpg";
+import staffVetting3 from "../img/what we do imgs/staff_vetting&training3.jpg";
+
+type StaffVettingHeroSliderProps = {
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+};
 
 const slides = [
-  { src: hero0, alt: "Hero image 1" },
-  { src: hero1, alt: "Hero image 2" },
-  { src: hero2, alt: "Hero image 3" },
-  { src: hero3, alt: "Hero image 4" },
-  { src: hero4, alt: "Hero image 5" },
+  { src: staffVetting1, alt: "Staff vetting and training image 1" },
+  { src: staffVetting2, alt: "Staff vetting and training image 2" },
+  { src: staffVetting3, alt: "Staff vetting and training image 3" },
 ];
 
-export default function HeroSlider() {
+export default function StaffVettingHeroSlider({
+  eyebrow,
+  title,
+  subtitle,
+}: StaffVettingHeroSliderProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -49,9 +55,19 @@ export default function HeroSlider() {
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
         <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 py-6 text-left sm:px-8 sm:py-14">
-          <p className="text-sm uppercase tracking-[0.35em] text-white"> </p>
-          <h1 className="mt-2 text-2xl sm:text-4xl font-semibold tracking-tight text-white"> </h1>
-          <p className="mt-3 max-w-3xl text-sm sm:text-base leading-relaxed text-white/80 line-clamp-2 sm:line-clamp-none"> </p>
+          {eyebrow ? (
+            <p className="text-sm uppercase tracking-[0.35em] text-white">{eyebrow}</p>
+          ) : null}
+          {title ? (
+            <h1 className="mt-2 text-2xl sm:text-4xl font-semibold tracking-tight text-white">
+              {title}
+            </h1>
+          ) : null}
+          {subtitle ? (
+            <p className="mt-3 max-w-3xl text-sm sm:text-base leading-relaxed text-white/80 line-clamp-2 sm:line-clamp-none">
+              {subtitle}
+            </p>
+          ) : null}
         </div>
 
         <div className="absolute inset-x-4 bottom-5 z-20 flex gap-2 sm:inset-x-6 sm:bottom-6 justify-start">

@@ -15,27 +15,35 @@ export default function RealEstatePage() {
           <SliderImages />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
-          <div className="relative z-20 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 py-14 text-center sm:px-8 sm:text-left">
-            <p className="text-sm uppercase tracking-[0.35em] text-slate-200">What we do</p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">Real Estate & Property Management</h1>
-            <p className="mt-4 max-w-3xl text-lg leading-8 text-white/80">Practical property management and real estate solutions that protect asset value, reduce vacancy, and deliver reliable tenant service.</p>
-            <div id="realestate-slider-dots" className="mt-4 flex gap-2 justify-center sm:justify-start"></div>
+          <div className="relative z-20 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 py-6 text-left sm:px-8 sm:py-14">
+            <p className="text-sm uppercase tracking-[0.35em] text-white">What we do</p>
+            <h1 className="mt-2 text-2xl sm:text-4xl font-semibold tracking-tight text-white">Real Estate & Property Management</h1>
+            <p className="mt-3 max-w-3xl text-sm sm:text-base leading-relaxed text-white/80 line-clamp-2 sm:line-clamp-none">Practical property management and real estate solutions that protect asset value, reduce vacancy, and deliver reliable tenant service.</p>
+            <div id="realestate-slider-dots" className="mt-4 flex gap-2 justify-start"></div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-16 sm:px-8 lg:px-12">
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold text-slate-950">Property management focused on performance</h2>
+          <h2 className="text-xl font-semibold text-slate-950">Comprehensive property management for lasting value</h2>
           <p className="max-w-3xl text-lg leading-8 text-slate-700">
-            From tenant relations and lease administration to maintenance and security, we deliver practical services that protect your investment and create dependable occupancy. We coordinate vendors, oversee repairs, and provide regular reporting to keep stakeholders informed.
+            We deliver professional real estate and property management services that protect your investment, optimize occupancy, and ensure your properties remain attractive, well-maintained, and financially productive.
           </p>
-          <ul className="list-disc pl-5 text-slate-700">
-            <li>Tenant liaison and lease administration</li>
-            <li>Preventive and reactive maintenance management</li>
-            <li>Security planning and access control</li>
-            <li>Vendor management and cost control</li>
-          </ul>
+        </div>
+
+        <div className="space-y-6">
+          <p className="text-lg leading-8 text-slate-700">
+            At Red Salamander, we recognize that successful real estate and property management requires more than administrative oversight—it demands strategic thinking, operational excellence, and genuine commitment to protecting your asset value while delivering exceptional tenant experiences. Our property management teams bring extensive experience managing diverse portfolios across residential, commercial, and mixed-use properties, enabling us to deliver sophisticated solutions tailored to each property's unique characteristics and market position. We understand that property owners face complex challenges—from balancing tenant satisfaction with cost management, to maintaining properties efficiently while protecting asset value, to navigating regulatory requirements and market dynamics. Our comprehensive approach combines professional tenant relations, proactive maintenance management, vendor coordination, and strategic financial oversight to create properties that thrive in competitive markets.
+          </p>
+
+          <p className="text-lg leading-8 text-slate-700">
+            We take pride in providing integrated property management services that go beyond reactive problem-solving to encompass strategic asset optimization. Our teams manage all dimensions of property operations—from tenant screening and lease administration to preventive maintenance planning and emergency repairs—while maintaining transparent communication with property owners and stakeholders. We implement systems and protocols designed to minimize vacancy periods, reduce maintenance emergencies through preventive planning, and maximize tenant retention through responsive, professional service. Our vendor networks are carefully managed to ensure quality work at competitive costs, and our financial reporting provides clear visibility into property performance and operational expenses. We believe that well-managed properties attract quality tenants, maintain higher occupancy rates, and appreciate in value over time—outcomes that directly reflect our commitment to operational excellence.
+          </p>
+
+          <p className="text-lg leading-8 text-slate-700">
+            Your real estate investment deserves professional management that protects and enhances its value. Red Salamander's commitment to comprehensive property management ensures that your properties are well-maintained, professionally administered, and positioned for long-term success in the market. We understand that property owners seek reliable partners who can handle the operational complexity of real estate while delivering predictable, positive results. By choosing Red Salamander for real estate and property management, you gain access to experienced professionals who treat your properties as if they were their own, combining strategic thinking with hands-on operational oversight. Maximize your property value, maintain occupancy, and achieve your real estate objectives with Red Salamander's dedicated property management expertise.
+          </p>
         </div>
 
         <div className="flex flex-wrap gap-4 text-sm font-semibold text-red-600">

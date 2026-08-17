@@ -13,12 +13,14 @@ export const navLinks = [
     href: "#",
     children: [
       { label: "Executive Travel Security", href: "/services/executive-travel" },
-      { label: "Escorts", href: "/services/escorts" },
+      { label: "Armed Guards and Escorts", href: "/services/escorts" },
       { label: "Staff Vetting and Training", href: "/services/staff-vetting" },
       { label: "Construction and Maintenance", href: "/services/construction" },
       { label: "Real Estate and Property Management", href: "/services/real-estate" },
-      { label: "Logistics and Operations", href: "/services/operations" },
-      { label: "Agribusiness and Hospitality", href: "/services/agribusiness" },
+      { label: "Transport and Logistics", href: "/services/operations" },
+      { label: "Agro Inputs and Security", href: "/services/agribusiness" },
+      { label: "Safety and Security Consultancy", href: "/services/safety-security-consultancy" },
+      { label: "Hospitality and Catering Consultancy", href: "/services/hospitality-catering-consultancy" },
     ],
   },
   {
