@@ -14,7 +14,7 @@ export default function Header () {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [dropdownPos, setDropdownPos] = useState<{ left: number; width: number } | null>(null);
+  const [dropdownPos, setDropdownPos] = useState<{ left?: number; right?: number; width: number } | null>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
   const isActivePath = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
@@ -102,7 +102,7 @@ export default function Header () {
   );
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 w-full bg-gradient-to-b from-red-600 via-red-700 to-red-800 text-white h-16">
+    <header className="fixed left-0 right-0 top-0 z-50 w-full bg-gradient-to-b from-red-600 via-red-700 to-red-800 text-white h-16 border-b-0 shadow-none">
       <div className="mx-auto flex max-w-7xl flex-nowrap min-w-0 items-center justify-between gap-4 px-6 sm:px-8 h-full">
         <Link
           href="/"
@@ -170,6 +170,24 @@ export default function Header () {
                           if (el) buttonRefs.current[link.label] = el;
                         }}
                         type="button"
+                        onMouseEnter={() => {
+                          setDesktopOpenMenu(link.label);
+                          if (buttonRefs.current[link.label]) {
+                            const rect = buttonRefs.current[link.label]!.getBoundingClientRect();
+                            setDropdownPos({
+                              left: alignRight ? undefined : Math.max(24, rect.left - 20),
+                              right: alignRight ? 24 : undefined,
+                              width: rect.width
+                            });
+                          }
+                        }}
+                        onMouseLeave={() => {
+                          setTimeout(() => {
+                            if (desktopOpenMenu === link.label && !navRef.current?.querySelector(':hover')) {
+                              setDesktopOpenMenu(null);
+                            }
+                          }, 150);
+                        }}
                         onClick={() => {
                           const isOpening = desktopOpenMenu !== link.label;
                           setDesktopOpenMenu((current) => (current === link.label ? null : link.label));
@@ -177,7 +195,8 @@ export default function Header () {
                           if (isOpening && buttonRefs.current[link.label]) {
                             const rect = buttonRefs.current[link.label]!.getBoundingClientRect();
                             setDropdownPos({
-                              left: rect.left,
+                              left: alignRight ? undefined : Math.max(24, rect.left - 20),
+                              right: alignRight ? 24 : undefined,
                               width: rect.width
                             });
                           }
@@ -191,20 +210,23 @@ export default function Header () {
                       </button>
 
                       <div
-                        className={`fixed top-16 z-50 mt-0 w-max min-w-[220px] max-w-[calc(100vw-2rem)] whitespace-nowrap overflow-hidden rounded-none border border-slate-900/10 bg-white text-slate-950 shadow-lg transition duration-150 ${
+                        onMouseEnter={() => setDesktopOpenMenu(link.label)}
+                        onMouseLeave={() => setDesktopOpenMenu(null)}
+                        className={`fixed top-16 z-50 mt-0 w-auto min-w-[140px] max-w-xs rounded-none border border-slate-900/10 bg-white text-slate-950 shadow-lg transition duration-150 ${
                           desktopOpenMenu === link.label ? "opacity-100 visible" : "opacity-0 invisible"
                         }`}
                         style={{
-                          left: dropdownPos ? `${dropdownPos.left}px` : undefined,
+                          left: dropdownPos?.left !== undefined ? `${dropdownPos.left}px` : undefined,
+                          right: dropdownPos?.right !== undefined ? `${dropdownPos.right}px` : undefined,
                         }}
                       >
-                        <div className="space-y-1 p-2 max-h-[70vh] overflow-y-auto">
+                        <div className="space-y-1 p-2 max-h-[85vh] overflow-y-auto">
                           {link.children.map((child) => (
                             <Link
                               key={`${link.label}-${child.label}`}
                               href={child.href}
                               aria-current={isActivePath(child.href) ? "page" : undefined}
-                              className={`block px-4 py-2.5 whitespace-nowrap text-sm transition ${isActivePath(child.href) ? "bg-red-50 font-semibold text-red-700" : "text-slate-700 hover:bg-red-50 hover:text-red-700"}`}
+                              className={`block px-4 py-2.5 text-sm transition whitespace-normal ${isActivePath(child.href) ? "bg-red-50 font-semibold text-red-700" : "text-slate-700 hover:bg-red-50 hover:text-red-700"}`}
                               onClick={() => setDesktopOpenMenu(null)}
                             >
                               {child.label}
@@ -225,7 +247,7 @@ export default function Header () {
         </div>
       </div>
 
-      <div className={`fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col bg-red-700/95 transform transition-transform duration-300 ease-out ${mobileSearchOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
+      <div className={`fixed inset-x-0 top-[3.95rem] bottom-0 z-40 flex flex-col bg-red-700/95 border-t-0 transform transition-transform duration-300 ease-out ${mobileSearchOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
         <div className="flex-1 overflow-y-auto px-6 py-6">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2 rounded-md border border-white/15 bg-white px-3 py-2">
@@ -277,7 +299,7 @@ export default function Header () {
         </div>
       </div>
 
-      <div className={`fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col bg-red-700/95 lg:hidden transform transition-transform duration-300 ease-out ${mobileOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
+      <div className={`fixed inset-x-0 top-[3.95rem] bottom-0 z-40 flex flex-col bg-red-700/95 border-t-0 lg:hidden transform transition-transform duration-300 ease-out ${mobileOpen ? "translate-x-0 opacity-100 visible pointer-events-auto" : "translate-x-full opacity-0 invisible pointer-events-none"}`}>
         <div className="flex-1 overflow-y-auto px-6 pb-6 pt-2">
           <div className="space-y-3">
             {navLinks.map((link) => (
