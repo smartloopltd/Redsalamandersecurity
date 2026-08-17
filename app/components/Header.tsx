@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navLinks } from "./navLinks";
@@ -44,10 +43,8 @@ export default function Header () {
   useEffect(() => {
     const activeLink = navLinks.find((link) => isGroupActive(link));
     if (activeLink) {
-      setDesktopOpenMenu(activeLink.label);
       setMobileOpenMenu(activeLink.label);
     } else {
-      setDesktopOpenMenu(null);
       setMobileOpenMenu(null);
     }
   }, [pathname]);
@@ -182,11 +179,7 @@ export default function Header () {
                           }
                         }}
                         onMouseLeave={() => {
-                          setTimeout(() => {
-                            if (desktopOpenMenu === link.label && !navRef.current?.querySelector(':hover')) {
-                              setDesktopOpenMenu(null);
-                            }
-                          }, 150);
+                          // Don't close immediately, let the dropdown handle it
                         }}
                         onClick={() => {
                           const isOpening = desktopOpenMenu !== link.label;
@@ -210,8 +203,12 @@ export default function Header () {
                       </button>
 
                       <div
-                        onMouseEnter={() => setDesktopOpenMenu(link.label)}
-                        onMouseLeave={() => setDesktopOpenMenu(null)}
+                        onMouseEnter={() => {
+                          setDesktopOpenMenu(link.label);
+                        }}
+                        onMouseLeave={() => {
+                          setDesktopOpenMenu(null);
+                        }}
                         className={`fixed top-16 z-50 mt-0 w-auto min-w-[140px] max-w-xs rounded-none border border-slate-900/10 bg-white text-slate-950 shadow-lg transition duration-150 ${
                           desktopOpenMenu === link.label ? "opacity-100 visible" : "opacity-0 invisible"
                         }`}
@@ -227,7 +224,9 @@ export default function Header () {
                               href={child.href}
                               aria-current={isActivePath(child.href) ? "page" : undefined}
                               className={`block px-4 py-2.5 text-sm transition whitespace-normal ${isActivePath(child.href) ? "bg-red-50 font-semibold text-red-700" : "text-slate-700 hover:bg-red-50 hover:text-red-700"}`}
-                              onClick={() => setDesktopOpenMenu(null)}
+                              onClick={() => {
+                                closeAllPanels();
+                              }}
                             >
                               {child.label}
                             </Link>
